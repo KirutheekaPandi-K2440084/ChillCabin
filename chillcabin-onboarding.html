@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Onboarding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <div class="cc-corner-logo">Chill Cabin</div>
+
+  <div class="cc-app">
+  <div class="cc-topbar">
+    <div class="cc-top-left">
+      <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+      <div class="cc-title">
+        <img src="chillcabin-logo.png" alt="Chill Cabin">
+        Chill Cabin
+      </div>
+    </div>
+    <div class="cc-top-right">
+      <div class="cc-top-icons">◦ ◦ ◦</div>
+      <a class="cc-profile" href="chillcabin-profile.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+          <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+        </svg>
+        <span class="cc-profile-name" id="ccProfileName">Guest</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cc-body">
+    <aside class="cc-left">
+      <div class="cc-kicker">Before we begin…</div>
+      <h1>How are you arriving today?</h1>
+      <p>There’s no right answer. We’ll meet you where you are.</p>
+    </aside>
+
+    <main class="cc-right">
+      <div class="cc-panel">
+        <div class="cc-grid">
+          <div class="cc-tile cc-calm" onclick="pick('Calm')">
+            <div class="t1">Calm</div><div class="t2">Feeling at ease</div>
+          </div>
+          <div class="cc-tile cc-anx" onclick="pick('Anxious')">
+            <div class="t1">Anxious</div><div class="t2">Heart a bit fast</div>
+          </div>
+          <div class="cc-tile cc-tired" onclick="pick('Tired')">
+            <div class="t1">Tired</div><div class="t2">Running on empty</div>
+          </div>
+
+          <div class="cc-tile cc-curious" onclick="pick('Curious')">
+            <div class="t1">Curious</div><div class="t2">Ready to explore</div>
+          </div>
+          <div class="cc-tile cc-over" onclick="pick('Overwhelmed')">
+            <div class="t1">Overwhelmed</div><div class="t2">It’s a lot today</div>
+          </div>
+          <div class="cc-tile cc-neutral" onclick="pick('Neutral')">
+            <div class="t1">Neutral</div><div class="t2">Just getting by</div>
+          </div>
+        </div>
+
+        <div class="cc-actions">
+          <a class="cc-btn primary" href="chillcabin-accessibility.html">Continue at my pace</a>
+          <a class="cc-btn" href="chillcabin-accessibility.html">Skip for now</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  function pick(mood){
+    localStorage.setItem("cc_mood", mood);
+    window.location.href = "chillcabin-accessibility.html";
+  }
+</script>
+
+<!-- Populate profile name for onboarding -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const prof = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+    const nameEl = document.getElementById('ccProfileName');
+    if (nameEl) {
+      nameEl.textContent = prof.firstName ? prof.firstName : 'Guest';
+    }
+  });
+</script>
+
+</body>
+</html>

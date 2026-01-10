@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Exploring Connections</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+
+<div class="cc-app">
+  <div class="cc-topbar">
+    <div class="cc-top-left">
+      <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+      <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+    </div>
+    <div class="cc-top-icons">◦ ◦ ◦</div>
+  </div>
+
+  <div class="cc-body">
+    <aside class="cc-left">
+      <div class="cc-kicker">Connect your way</div>
+      <h1>Open to connect with fellow travellers?</h1>
+      <p>Connection is optional. Choose a calm space or a purposeful chat.</p>
+    </aside>
+
+    <main class="cc-right">
+      <div class="cc-panel">
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div style="font-weight:900; font-size:18px;">Select your social mode</div>
+          <label style="display:flex; gap:10px; align-items:center; font-weight:800; color:rgba(10,30,48,.65);">
+            <span>On</span>
+            <input type="checkbox" checked>
+          </label>
+        </div>
+
+        <div class="cc-tabs">
+          <div class="cc-tab active" onclick="tab(0)">Like-Minded Travellers</div>
+          <div class="cc-tab" onclick="tab(1)">Business & Networking</div>
+        </div>
+
+        <div id="cards" class="cc-grid" style="grid-template-columns: repeat(2, 1fr);">
+          <div class="cc-tile" onclick="location.href='chillcabin-chat.html'">
+            <div class="t1">Shared First-Time Flyer</div>
+            <div class="t2">Quiet conversations before first flights</div>
+          </div>
+          <div class="cc-tile" onclick="location.href='chillcabin-chat.html'">
+            <div class="t1">Quiet Conversations</div>
+            <div class="t2">Open to gentle, low-effort chat</div>
+          </div>
+          <div class="cc-tile" onclick="location.href='chillcabin-chat.html'">
+            <div class="t1">Entrepreneur en Route</div>
+            <div class="t2">Share ideas, ask one thoughtful question</div>
+          </div>
+          <div class="cc-tile" onclick="location.href='chillcabin-chat.html'">
+            <div class="t1">Networking Chat</div>
+            <div class="t2">Exchange goals & opportunities</div>
+          </div>
+        </div>
+
+        <div class="cc-actions" style="justify-content:flex-end;">
+          <a class="cc-btn primary" href="chillcabin-chat.html">Say Hello</a>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+function tab(i){
+  document.querySelectorAll('.cc-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.cc-tab')[i].classList.add('active');
+}
+</script>
+
+</body>
+</html>

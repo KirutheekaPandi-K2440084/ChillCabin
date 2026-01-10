@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Profile Settings</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Shared UI styles -->
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Background video just like other modules -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <!-- Persistent corner brand mark -->
+  <div class="cc-corner-logo">Chill Cabin</div>
+
+  <div class="cc-app">
+    <div class="cc-topbar">
+      <div class="cc-top-left">
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title"><img src="chillcabin-logo.png" alt="Chill Cabin">Chill Cabin</div>
+      </div>
+      <div class="cc-top-right">
+        <div class="cc-top-icons">◦ ◦ ◦</div>
+        <a class="cc-profile" href="chillcabin-profile.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+            <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+          </svg>
+          <span class="cc-profile-name" id="ccProfileName">Guest</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="cc-body">
+      <!-- Left panel: description -->
+      <aside class="cc-left">
+        <div class="cc-kicker">Profile &amp; Accessibility</div>
+        <h1>Your preferences</h1>
+        <p>Update your personal details and accessibility settings here. These preferences are stored locally and help tailor your Chill Cabin experience.</p>
+      </aside>
+
+      <!-- Right panel: settings form -->
+      <main class="cc-right">
+        <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
+          <h2 style="margin-top:0;">Profile Setting</h2>
+          <!-- Section 1: Profile Dashboard -->
+          <div class="cc-settings-section">
+            <h3>1. Profile Dashboard</h3>
+            <div class="cc-setting-card">
+              <p id="cc-account-summary" style="margin-bottom:0;"></p>
+              <p style="font-size:14px; color:rgba(10,30,48,.60); margin-top:8px;">You can update your passenger details during sign‑up. These details persist only for this session.</p>
+            </div>
+          </div>
+
+          <!-- Section 2: Accessibility -->
+          <div class="cc-settings-section">
+            <h3>2. Accessibility</h3>
+            <div class="cc-setting-card">
+              <div class="cc-setting-item">
+                <label for="prefTextSizeRange">Text size</label>
+                <input type="range" id="prefTextSizeRange" min="1" max="2" step="0.1">
+              </div>
+              <!-- Boolean accessibility options rendered in a table for neat alignment -->
+              <table class="cc-settings-table">
+                <tr>
+                  <td>Screen reader prompts</td>
+                  <td><input type="checkbox" id="prefScreenReader"></td>
+                </tr>
+                <tr>
+                  <td>Audio assistance</td>
+                  <td><input type="checkbox" id="prefAudioAssist"></td>
+                </tr>
+                <tr>
+                  <td>Seizure‑safe visuals</td>
+                  <td><input type="checkbox" id="prefSeizureSafe"></td>
+                </tr>
+                <tr>
+                  <td>Vision‑impaired mode</td>
+                  <td><input type="checkbox" id="prefVision"></td>
+                </tr>
+                <tr>
+                  <td>ADHD‑friendly mode</td>
+                  <td><input type="checkbox" id="prefADHD"></td>
+                </tr>
+                <tr>
+                  <td>Cognitive accessibility</td>
+                  <td><input type="checkbox" id="prefCognitive"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 3: Mode -->
+          <div class="cc-settings-section">
+            <h3>3. Mode</h3>
+            <div class="cc-setting-card">
+              <div class="cc-setting-item">
+                <label for="prefColorScheme">Colour scheme</label>
+                <select id="prefColorScheme">
+                  <option value="default">Default</option>
+                  <option value="cool">Cool</option>
+                  <option value="warm">Warm</option>
+                  <option value="highcontrast">High contrast</option>
+                </select>
+              </div>
+              <div class="cc-setting-item">
+                <label for="prefContrast">Contrast</label>
+                <select id="prefContrast">
+                  <option value="normal">Normal</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <div class="cc-setting-item">
+                <label for="prefSaturationRange">Saturation</label>
+                <input type="range" id="prefSaturationRange" min="0" max="100" step="5">
+              </div>
+              <!-- Boolean mode options rendered in a table -->
+              <table class="cc-settings-table">
+                <tr>
+                  <td>Monochrome</td>
+                  <td><input type="checkbox" id="prefMonochrome"></td>
+                </tr>
+                <tr>
+                  <td>Low saturation</td>
+                  <td><input type="checkbox" id="prefLowSat"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 4: Keyboard Navigation -->
+          <div class="cc-settings-section">
+            <h3>4. Keyboard Navigation [Motor]</h3>
+            <div class="cc-setting-card">
+              <table class="cc-settings-table">
+                <tr>
+                  <td>Enable keyboard navigation</td>
+                  <td><input type="checkbox" id="prefKeyboardNav"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="cc-actions">
+            <button class="cc-btn primary" onclick="savePreferences()">Save settings</button>
+            <button class="cc-btn" onclick="clearSession()">Sign out</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Populate profile name and account summary on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) {
+        nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+      }
+      // Show account summary
+      const summaryEl = document.getElementById('cc-account-summary');
+      if (profile.firstName) {
+        summaryEl.textContent = `${profile.firstName} ${profile.surname} — Flight ${profile.flight}, Boarding pass ${profile.boardingPass}, Date ${profile.flightDate}`;
+      } else {
+        summaryEl.textContent = 'You are not signed in yet.';
+      }
+      // Load preferences
+      const prefs = JSON.parse(localStorage.getItem('cc_userPrefs') || '{}');
+      // Apply saved preferences to inputs
+      // Text size (range from 1-2, default 1)
+      const textSizeRange = document.getElementById('prefTextSizeRange');
+      if (textSizeRange) {
+        textSizeRange.value = prefs.textSize || 1;
+      }
+      // Set checkboxes for accessibility features
+      document.getElementById('prefScreenReader').checked = !!prefs.screenReader;
+      document.getElementById('prefAudioAssist').checked = !!prefs.audioAssist;
+      document.getElementById('prefSeizureSafe').checked = !!prefs.seizureSafe;
+      document.getElementById('prefVision').checked = !!prefs.visionImpaired;
+      document.getElementById('prefADHD').checked = !!prefs.adhdFriendly;
+      document.getElementById('prefCognitive').checked = !!prefs.cognitive;
+      // Mode settings
+      document.getElementById('prefColorScheme').value = prefs.colorScheme || 'default';
+      document.getElementById('prefContrast').value = prefs.contrast || 'normal';
+      const satRange = document.getElementById('prefSaturationRange');
+      if (satRange) {
+        satRange.value = typeof prefs.saturation !== 'undefined' ? prefs.saturation : 50;
+      }
+      document.getElementById('prefMonochrome').checked = !!prefs.monochrome;
+      document.getElementById('prefLowSat').checked = !!prefs.lowSaturation;
+      // Keyboard navigation
+      document.getElementById('prefKeyboardNav').checked = !!prefs.keyboardNav;
+    });
+
+    function savePreferences() {
+      const prefs = {
+        textSize: parseFloat(document.getElementById('prefTextSizeRange').value || 1),
+        screenReader: document.getElementById('prefScreenReader').checked,
+        audioAssist: document.getElementById('prefAudioAssist').checked,
+        seizureSafe: document.getElementById('prefSeizureSafe').checked,
+        visionImpaired: document.getElementById('prefVision').checked,
+        adhdFriendly: document.getElementById('prefADHD').checked,
+        cognitive: document.getElementById('prefCognitive').checked,
+        colorScheme: document.getElementById('prefColorScheme').value,
+        contrast: document.getElementById('prefContrast').value,
+        saturation: parseInt(document.getElementById('prefSaturationRange').value || 50),
+        monochrome: document.getElementById('prefMonochrome').checked,
+        lowSaturation: document.getElementById('prefLowSat').checked,
+        keyboardNav: document.getElementById('prefKeyboardNav').checked
+      };
+      localStorage.setItem('cc_userPrefs', JSON.stringify(prefs));
+      alert('Preferences saved successfully!');
+      // After saving preferences, navigate to the home landing page
+      window.location.href = 'chillcabin-home.html';
+    }
+
+    function clearSession() {
+      // Clear stored user and prefs
+      localStorage.removeItem('cc_userProfile');
+      localStorage.removeItem('cc_userPrefs');
+      alert('Session cleared. Returning to role selection.');
+      window.location.href = 'chillcabin-role.html';
+    }
+  </script>
+</body>
+</html>

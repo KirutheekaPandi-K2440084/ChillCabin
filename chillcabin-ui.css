@@ -1,0 +1,634 @@
+:root{
+  --ink:#0b1b2a;
+  --ink2:#10283a;
+  --muted:rgba(11,27,42,.70);
+  --line:rgba(255,255,255,.38);
+  --glass:rgba(255,255,255,.20);
+  --glass2:rgba(255,255,255,.12);
+  --shadow:0 30px 90px rgba(0,0,0,.35);
+  --r-xl:28px;
+  --r-lg:22px;
+  --r-md:16px;
+  --accent:#2f6de6;
+  --accent2:#77b5ff;
+  --gold:#eac67a;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;}
+body{
+  margin:0;
+  font-family: Poppins, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: var(--ink);
+
+  /* Futuristic calming cabin background with translucent overlay for readability */
+  background:
+    linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0.15)),
+    url("futuristic-cabin-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/*
+  Video background element. This sits fixed behind the app content and plays
+  silently on a loop. It uses object-fit: cover so it fills the viewport
+  without distortion. pointer-events: none ensures the video doesn’t
+  intercept scroll or click events. A negative z-index places it behind
+  everything else. We hide the video for splash pages via body.splash below.
+*/
+.cc-bg-video{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Hide the video on splash screens so the static background shows instead */
+body.splash .cc-bg-video{
+  display: none;
+}
+
+/* App frame */
+/*
+  App container: adapt width to fill more of the viewport on large screens. We allow up to 1280px
+  but default to 90% of the viewport width with a small margin. Rounded corners and backdrop keep the luxury feel.
+*/
+.cc-app{
+  /* Increase the default width and reduce margins so the app frame fills more of the viewport on larger screens */
+  max-width: 1500px;
+  width: 96%;
+  margin: 1.5vw auto;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.10);
+  backdrop-filter: blur(16px);
+}
+
+/* Top chrome bar */
+.cc-topbar{
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 0 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.30));
+  border-bottom: 1px solid rgba(255,255,255,.35);
+}
+
+.cc-top-left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.cc-dot{
+  width:10px;height:10px;border-radius:50%;
+  background: rgba(0,0,0,.12);
+}
+
+.cc-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+  letter-spacing:.2px;
+  color: rgba(10,30,48,.88);
+}
+
+.cc-title img{
+  /* Use the new cabin logo and set a larger size so the logo pops more */
+  width:60px;
+  height:60px;
+  object-fit:contain;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.25));
+}
+
+/* Make the text in the title larger to complement the bigger logo */
+/* Further enlarge the brand text for more prominence */
+.cc-title{
+  font-size: 28px;
+}
+
+/* Corner logo: persistent brand marker on all screens */
+.cc-corner-logo{
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+  font-weight: 800;
+  font-size: 20px;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  pointer-events: none;
+}
+
+@media (max-width: 768px){
+  .cc-corner-logo{
+    bottom: 12px;
+    left: 12px;
+    font-size: 16px;
+  }
+}
+
+.cc-top-icons{
+  display:flex;
+  gap:10px;
+  opacity:.7;
+  color: rgba(10,30,48,.55);
+  font-weight:700;
+}
+
+/* Container for the right side of the top bar (profile/account) */
+.cc-top-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* Profile chip in the top bar */
+.cc-profile{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background: rgba(255,255,255,0.25);
+  padding:4px 12px;
+  border-radius:9999px;
+  cursor:pointer;
+  transition: background 0.2s ease;
+  text-decoration:none;
+}
+.cc-profile:hover{
+  background: rgba(255,255,255,0.35);
+}
+
+/* Avatar in the profile chip */
+.cc-profile img{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+/* Name text in the profile chip */
+.cc-profile-name{
+  font-size:16px;
+  font-weight:500;
+  color: rgba(10,30,48,0.8);
+}
+
+.cc-body{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 680px;
+}
+
+/* Left text panel */
+.cc-left{
+  padding: 34px 28px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,.12));
+  border-right: 1px solid rgba(255,255,255,.35);
+}
+
+.cc-kicker{
+  font-size:14px;
+  opacity:.75;
+  letter-spacing:.2px;
+}
+
+.cc-left h1{
+  font-size: 34px;
+  margin: 10px 0 12px;
+  line-height:1.15;
+  color: rgba(10,30,48,.88);
+}
+
+.cc-left p{
+  margin:0;
+  max-width: 28ch;
+  color: rgba(10,30,48,.62);
+  line-height:1.45;
+}
+
+/* Right module area */
+.cc-right{
+  padding: 24px;
+  position:relative;
+}
+
+/* Shine overlay */
+.cc-right::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background: radial-gradient(circle at 40% 30%, rgba(255,255,255,.55), transparent 55%);
+  transform: rotate(12deg);
+  animation: ccShine 8s ease-in-out infinite;
+  pointer-events:none;
+  opacity:.35;
+}
+@keyframes ccShine{
+  0%,100%{ transform: translateX(-4%) rotate(10deg); opacity:.25;}
+  50%{ transform: translateX(6%) rotate(13deg); opacity:.40;}
+}
+
+.cc-panel{
+  position:relative;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255,255,255,.45);
+  background: linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,.22));
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.22);
+  padding: 18px;
+}
+
+.cc-panel.soft{
+  background: linear-gradient(180deg, rgba(255,255,255,.46), rgba(255,255,255,.18));
+}
+
+.cc-row{
+  display:grid;
+  grid-template-columns: 260px 1fr;
+  gap:16px;
+}
+
+/* Side navigation */
+.cc-nav{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.cc-nav .cc-nav-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.45);
+  background: rgba(255,255,255,.45);
+  color: rgba(10,30,48,.70);
+  font-weight:700;
+}
+.cc-nav .cc-nav-item.active{
+  background: linear-gradient(135deg, rgba(47,109,230,.22), rgba(119,181,255,.22));
+  color: rgba(10,30,48,.88);
+}
+
+/* Mood tiles grid */
+.cc-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.cc-tile{
+  border-radius: 16px;
+  padding: 16px 14px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.55);
+  box-shadow: 0 12px 24px rgba(0,0,0,.12);
+  transition: transform .18s ease, box-shadow .18s ease;
+  cursor:pointer;
+}
+.cc-tile:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.16);
+}
+.cc-tile .t1{font-weight:800; font-size:18px; color: rgba(10,30,48,.88);}
+.cc-tile .t2{font-size:12px; color: rgba(10,30,48,.58); margin-top:4px;}
+
+.cc-calm{ background: linear-gradient(135deg, rgba(140,189,255,.70), rgba(255,255,255,.50));}
+.cc-anx{ background: linear-gradient(135deg, rgba(244,199,184,.75), rgba(255,255,255,.50));}
+.cc-tired{ background: linear-gradient(135deg, rgba(242,215,170,.75), rgba(255,255,255,.50));}
+.cc-curious{ background: linear-gradient(135deg, rgba(186,230,223,.74), rgba(255,255,255,.50));}
+.cc-over{ background: linear-gradient(135deg, rgba(215,198,255,.75), rgba(255,255,255,.50));}
+.cc-neutral{ background: linear-gradient(135deg, rgba(235,238,245,.90), rgba(255,255,255,.55));}
+
+/* Buttons */
+.cc-actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  margin-top: 16px;
+}
+.cc-btn{
+  border-radius: 999px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.65);
+  font-weight:800;
+  color: rgba(10,30,48,.72);
+  text-decoration:none;
+  transition:.18s ease;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.cc-btn:hover{ transform: translateY(-2px); }
+.cc-btn.primary{
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  border-color: transparent;
+}
+.cc-btn.gold{
+  background: linear-gradient(135deg, rgba(234,198,122,1), rgba(255,255,255,.8));
+  color: rgba(10,30,48,.84);
+  border-color: rgba(234,198,122,.4);
+}
+
+/*
+  Responsive layout adjustments for laptop, iPad, and iPhone
+  On narrower screens we reduce margins, collapse columns, and remove rounded corners for a full‑width experience.
+*/
+@media (max-width: 1024px) {
+  .cc-app {
+    margin: 12px;
+    width: calc(100% - 24px);
+    max-width: 100%;
+  }
+  .cc-body {
+    grid-template-columns: 1fr;
+  }
+  .cc-left {
+    display: none;
+  }
+  .cc-right {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cc-app {
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+  .cc-topbar {
+    border-radius: 0;
+  }
+  body {
+    background-attachment: scroll;
+  }
+}
+
+/*
+  Device frame: use this wrapper around modules to simulate an iPad border.
+  It provides a thicker border and a subtle shadow to evoke a tablet bezel.
+*/
+.device-frame {
+  /* Thicker bezel and larger radius to better evoke a tablet device.
+     The lighter border colour adds contrast on dark backgrounds. */
+  padding: 24px;
+  border: 12px solid rgba(0,0,0,0.18);
+  border-radius: 36px;
+  background: rgba(255,255,255,0.88);
+  box-shadow: 0 24px 48px rgba(0,0,0,.22);
+}
+
+@media (max-width: 1024px) {
+  .device-frame {
+    border-radius: 28px;
+    padding: 20px;
+    border-width: 10px;
+  }
+}
+
+.cc-pillrow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+.cc-pill{
+  padding:10px 14px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.55);
+  font-weight:800;
+  color: rgba(10,30,48,.70);
+  cursor:pointer;
+}
+.cc-pill.active{
+  background: linear-gradient(135deg, rgba(47,109,230,.18), rgba(119,181,255,.18));
+  color: rgba(10,30,48,.88);
+}
+
+.cc-input, select{
+  width:100%;
+  border-radius:14px;
+  padding:12px 12px;
+  border:1px solid rgba(10,30,48,.10);
+  background: rgba(255,255,255,.70);
+  outline:none;
+}
+
+.cc-split-two{
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap:16px;
+}
+
+.cc-callout{
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.60);
+  padding:16px;
+}
+
+.cc-chat{
+  border-radius: var(--r-lg);
+  border:1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.55);
+  padding:14px;
+}
+
+.cc-bubble{
+  max-width: 75%;
+  border-radius: 16px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.70);
+  color: rgba(10,30,48,.78);
+  box-shadow: 0 10px 18px rgba(0,0,0,.10);
+}
+.cc-bubble.me{
+  margin-left:auto;
+  background: linear-gradient(135deg, rgba(47,109,230,.22), rgba(119,181,255,.22));
+}
+.cc-bubble.system{
+  background: linear-gradient(135deg, rgba(244,199,184,.26), rgba(255,255,255,.60));
+}
+
+.cc-tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+}
+.cc-tab{
+  flex:1;
+  text-align:center;
+  padding:10px 12px;
+  border-radius: 999px;
+  border:1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.55);
+  font-weight:800;
+  color: rgba(10,30,48,.70);
+  cursor:pointer;
+}
+.cc-tab.active{
+  background: linear-gradient(135deg, rgba(47,109,230,.18), rgba(119,181,255,.18));
+  color: rgba(10,30,48,.88);
+}
+
+/* ----- Profile Settings styles ----- */
+.cc-settings-section {
+  margin-bottom: 28px;
+}
+
+.cc-settings-section h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(10,30,48,.85);
+}
+
+/* Profile settings list items: stack label and control vertically for better responsiveness */
+.cc-setting-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+/* Horizontal layout for toggle items (checkbox rows). These items keep the label and checkbox on one line. */
+.cc-setting-item.toggle {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.cc-setting-item.toggle label {
+  margin-bottom: 0;
+}
+.cc-setting-item.toggle input[type="checkbox"] {
+  /* Let checkbox take only the space it needs */
+  width: auto;
+}
+
+.cc-setting-item label {
+  font-weight: 600;
+  color: rgba(10,30,48,.75);
+  margin-bottom: 6px;
+}
+
+.cc-setting-item input[type="range"],
+  .cc-setting-item select {
+  /* Allow range and select to flex naturally in vertical layout */
+  flex-shrink: 0;
+  width: 100%;
+  margin-left: 0;
+}
+
+/* For settings lists, make controls expand the full width for consistency */
+/* Make range and select elements stretch to the container width */
+.cc-setting-item input[type="range"],
+.cc-setting-item select {
+  width: 100%;
+  margin-left: 0;
+}
+
+.cc-setting-item input[type="range"] {
+  /* Restyle the slider to better match the aesthetic */
+  -webkit-appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(10,30,48,.25);
+  outline: none;
+}
+
+/* Custom thumb for range slider */
+.cc-setting-item input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,.20);
+}
+.cc-settings-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.cc-settings-table td {
+  padding: 6px 0;
+  color: rgba(10,30,48,.75);
+  font-weight: 600;
+}
+.cc-settings-table td:last-child {
+  width: 20%;
+  text-align: right;
+}
+.cc-settings-table td:first-child {
+  width: 80%;
+}
+.cc-settings-table input[type="checkbox"] {
+  transform: scale(1.2);
+}
+.cc-setting-item input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,.20);
+}
+.cc-setting-item input[type="range"]::-ms-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,.20);
+}
+
+/* Style the select dropdowns to align with glassy aesthetic */
+.cc-setting-item select {
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.85);
+  color: rgba(10,30,48,.80);
+  font-size: 14px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%3E%3Cpath%20d='M4%206l4%204%204-4'%20fill='none'%20stroke='%230A1E30'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 12px) center;
+  background-size: 12px;
+  padding-right: 36px;
+}
+.cc-setting-item select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.cc-setting-item input[type="checkbox"] {
+  transform: scale(1.2);
+  /* No extra left margin when laid out in grid */
+  margin-left: 0;
+}
+
+.cc-setting-card {
+  border: 1px solid rgba(255,255,255,.55);
+  background: rgba(255,255,255,.60);
+  border-radius: var(--r-lg);
+  padding: 16px;
+  margin-bottom: 20px;
+  color: rgba(10,30,48,.75);
+}

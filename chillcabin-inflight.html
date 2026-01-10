@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – In‑Flight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+  <style>
+    .progress-bar {
+      width:100%;
+      height:8px;
+      background:rgba(255,255,255,0.3);
+      border-radius:4px;
+      overflow:hidden;
+      margin-top:4px;
+    }
+    .progress-bar span {
+      display:block;
+      height:100%;
+      background:var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <div class="cc-corner-logo">Chill Cabin</div>
+  <div class="cc-app">
+    <div class="cc-topbar">
+      <div class="cc-top-left">
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+      </div>
+      <div class="cc-top-right">
+        <div class="cc-top-icons">◦ ◦ ◦</div>
+        <a class="cc-profile" href="chillcabin-profile.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+            <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+          </svg>
+          <span class="cc-profile-name" id="ccProfileName">Guest</span>
+        </a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <aside class="cc-left">
+        <div class="cc-kicker">In‑Flight</div>
+        <h1>Stay calm &amp; connected</h1>
+        <p>Everything you need to feel supported while cruising above the clouds.</p>
+      </aside>
+      <main class="cc-right">
+        <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
+          <!-- Mood check -->
+          <h2>How are you feeling today?</h2>
+          <div class="cc-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px;">
+            <div class="cc-tile cc-calm" onclick="selectMood('Calm')"><div class="t1">Calm</div><div class="t2">At ease</div></div>
+            <div class="cc-tile cc-anx" onclick="selectMood('Anxious')"><div class="t1">Anxious</div><div class="t2">Uneasy</div></div>
+            <div class="cc-tile cc-tired" onclick="selectMood('Tired')"><div class="t1">Tired</div><div class="t2">Low energy</div></div>
+            <div class="cc-tile cc-curious" onclick="selectMood('Curious')"><div class="t1">Curious</div><div class="t2">Inquisitive</div></div>
+            <div class="cc-tile cc-over" onclick="selectMood('Overwhelmed')"><div class="t1">Overwhelmed</div><div class="t2">Too much</div></div>
+          </div>
+          <div class="cc-actions" style="margin-top:12px;">
+            <a class="cc-btn primary" href="chillcabin-chat.html">Chat with ChillChat</a>
+          </div>
+
+          <!-- Zone‑based emotional awareness -->
+          <h2>Zone‑Based Emotional Awareness</h2>
+          <div class="cc-setting-card">
+            <p>The crew uses anonymous, aggregated mood data to understand how the cabin is feeling and provide support when needed. No personal information is shared.</p>
+            <table class="cc-settings-table">
+              <tr><td>Calm Zone</td><td>Most passengers are relaxed and at ease.</td></tr>
+              <tr><td>Reflection Zone</td><td>Passengers are quiet, perhaps tired or contemplative.</td></tr>
+              <tr><td>Support Zone</td><td>Some passengers require reassurance – crew stays attentive.</td></tr>
+            </table>
+          </div>
+
+          <!-- Breathing & music -->
+          <h2>Breathing guide &amp; Music</h2>
+          <div class="cc-setting-card">
+            <p>Need a moment? Practise a guided breathing exercise or listen to soothing tracks.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <button class="cc-btn" onclick="location.href='chillcabin-breathing.html'">Breathing Exercise</button>
+              <button class="cc-btn" onclick="location.href='chillcabin-music.html'">Soothing Music</button>
+            </div>
+            <p style="margin-top:12px; font-size:14px; color:rgba(10,30,48,.65);">Recommended songs: "Skyward Dreams", "Cabin Serenity", "Cloud Drift".</p>
+          </div>
+
+          <!-- Entertainment surfing -->
+          <h2>In‑Flight Entertainment</h2>
+          <div class="cc-setting-card">
+            <p>Explore a variety of entertainment options:</p>
+            <ul style="margin-left:20px;">
+              <li>Movies: A curated collection of classic and new releases.</li>
+              <li>TV Shows: Catch up on your favourite series.</li>
+              <li>Podcasts: Listen to inspiring stories and interviews.</li>
+              <li>Games: Enjoy brain teasers and casual games.</li>
+            </ul>
+            <p style="font-size:14px; color:rgba(10,30,48,.65);">Tip: Use headphones and adjust brightness to reduce eye strain.</p>
+          </div>
+
+          <!-- Flight tracking -->
+          <h2>Track Your Flight</h2>
+          <div class="cc-setting-card">
+            <p>Your flight is currently cruising at 35,000 ft with a ground speed of 450 knots. Estimated arrival time is in 2h 30m.</p>
+            <p>The flight path takes you over the Atlantic Ocean heading towards London Heathrow. Sit back and enjoy the view!</p>
+          </div>
+
+          <!-- Help section -->
+          <h2>Help (?)</h2>
+          <div class="cc-setting-card">
+            <p>If you need immediate assistance, the crew is here for you.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:12px;">
+              <button class="cc-btn" onclick="alert('Cabin crew notified – please stay seated.')">Call cabin crew</button>
+              <button class="cc-btn" onclick="alert('Medical assistance requested – help is on the way.')">Medical emergency</button>
+              <button class="cc-btn" onclick="alert('A crew member will check on you shortly.')">Any other assistance</button>
+            </div>
+          </div>
+
+          <!-- Turbulence assurance -->
+          <h2>Turbulence Assurance</h2>
+          <div class="cc-setting-card">
+            <p>Stay informed about in‑flight turbulence and how to manage it calmly.</p>
+            <p>Current turbulence:</p>
+            <div class="progress-bar"><span style="width:20%;"></span></div>
+            <p style="font-size:14px;">Mild – You may feel slight bumps.</p>
+            <p>Expected turbulence:</p>
+            <div class="progress-bar"><span style="width:50%;"></span></div>
+            <p style="font-size:14px;">Moderate – Keep seatbelts fastened.</p>
+            <h4>Dos &amp; Don’ts</h4>
+            <ul>
+              <li>Do remain seated with your seatbelt fastened.</li>
+              <li>Do listen to instructions from the crew.</li>
+              <li>Don’t stand or walk unless necessary.</li>
+              <li>Don’t panic – turbulence is normal and aircraft are designed to handle it.</li>
+            </ul>
+            <p>Play some calming music and focus on your breath to stay centred.</p>
+          </div>
+
+          <!-- Connect to apps -->
+          <h2>Connect to Apps</h2>
+          <div class="cc-setting-card">
+            <p>Make the most of the onboard connectivity.</p>
+            <ul style="margin-left:20px;">
+              <li>Airline Wi‑Fi &amp; Music: Purchase Wi‑Fi to browse and stream music.</li>
+              <li>Airline Broadcast: Tune in to announcements and updates.</li>
+              <li>Mobile Apps: Connect your phone to access additional services.</li>
+            </ul>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+    });
+    function selectMood(mood) {
+      localStorage.setItem('cc_inflightMood', mood);
+      alert('Mood recorded: ' + mood);
+    }
+  </script>
+</body>
+</html>

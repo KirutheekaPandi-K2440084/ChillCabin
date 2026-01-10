@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Consent & Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+
+<div class="cc-app">
+    <div class="cc-topbar">
+    <div class="cc-top-left">
+      <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+      <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+    </div>
+    <div class="cc-top-right">
+      <div class="cc-top-icons">◦ ◦ ◦</div>
+      <a class="cc-profile" href="chillcabin-profile.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+          <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+        </svg>
+        <span class="cc-profile-name" id="ccProfileName">Guest</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cc-body">
+    <aside class="cc-left">
+      <div class="cc-kicker">Your data, your choices</div>
+      <h1>Consent & control</h1>
+      <p>Choose what’s remembered, what’s shared, and what disappears after landing.</p>
+    </aside>
+
+    <main class="cc-right">
+      <div class="cc-panel">
+        <div style="font-weight:900; font-size:20px; margin-bottom:12px;">Data Privacy Dashboard</div>
+
+        <div class="cc-callout">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin:10px 0;">
+            <div style="font-weight:900; color:rgba(10,30,48,.75);">Save my emotional data</div>
+            <input type="checkbox">
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin:10px 0;">
+            <div style="font-weight:900; color:rgba(10,30,48,.75);">Limit data sharing</div>
+            <input type="checkbox" checked>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin:10px 0;">
+            <div style="font-weight:900; color:rgba(10,30,48,.75);">Chat history is temporary</div>
+            <input type="checkbox" checked>
+          </div>
+        </div>
+
+        <div class="cc-callout" style="margin-top:12px;">
+          <div style="font-weight:900; margin-bottom:8px; color:rgba(10,30,48,.80);">Preview</div>
+          <div class="cc-bubble system">Hi there. How’s everyone feeling?</div>
+          <div class="cc-bubble me">Feeling calmer — how about you?</div>
+          <div class="cc-bubble system">If you’d like, we can keep it light and brief.</div>
+        </div>
+
+        <div class="cc-actions" style="justify-content:flex-end;">
+          <a class="cc-btn" href="chillcabin-overview.html">Back</a>
+          <a class="cc-btn primary" href="chillcabin-cabinconnect.html">Review & Continue</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+  <script>
+    // Populate name in profile chip for consent page
+    document.addEventListener('DOMContentLoaded', function() {
+      const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) {
+        nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+      }
+    });
+  </script>
+
+</body>
+</html>

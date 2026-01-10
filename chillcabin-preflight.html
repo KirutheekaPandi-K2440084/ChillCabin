@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Pre‑Flight</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="chillcabin-ui.css">
+  <style>
+    /* Custom timeline styling for pre‑flight */
+    .cc-timeline {
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .cc-timeline li {
+      position:relative;
+      padding-left:28px;
+      margin:8px 0;
+    }
+    .cc-timeline li::before {
+      content:'';
+      position:absolute;
+      left:0;
+      top:6px;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--accent);
+    }
+    /* Simple chat styling */
+    #chatQuestions button {
+      display:block;
+      width:100%;
+      margin:4px 0;
+      padding:8px 12px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.5);
+      border:1px solid rgba(255,255,255,0.4);
+      color:var(--ink);
+      cursor:pointer;
+      text-align:left;
+      transition:background 0.2s;
+    }
+    #chatQuestions button:hover {
+      background:rgba(255,255,255,0.65);
+    }
+    #chatAnswer {
+      margin-top:12px;
+      padding:12px;
+      background:rgba(255,255,255,0.45);
+      border-radius:16px;
+      min-height:60px;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <div class="cc-corner-logo">Chill Cabin</div>
+
+  <div class="cc-app">
+    <div class="cc-topbar">
+      <div class="cc-top-left">
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title"><img src="chillcabin-logo.png" alt="Chill Cabin">Chill Cabin</div>
+      </div>
+      <div class="cc-top-right">
+        <div class="cc-top-icons">◦ ◦ ◦</div>
+        <a class="cc-profile" href="chillcabin-profile.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+            <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+          </svg>
+          <span class="cc-profile-name" id="ccProfileName">Guest</span>
+        </a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <aside class="cc-left">
+        <div class="cc-kicker">Pre‑Flight</div>
+        <h1>Prepare for take‑off</h1>
+        <p>Get organised, stay calm and make the most of your waiting time before boarding.</p>
+      </aside>
+      <main class="cc-right">
+        <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
+          <!-- Pre‑Booking Checklist -->
+          <h2>Pre‑Booking Checklist</h2>
+          <div class="cc-setting-card">
+            <label><input type="checkbox"> Check passport validity</label><br>
+            <label><input type="checkbox"> Confirm flight time and date</label><br>
+            <label><input type="checkbox"> Pack cabin baggage essentials</label><br>
+            <label><input type="checkbox"> Complete online check‑in</label><br>
+            <label><input type="checkbox"> Arrange transport to the airport</label><br>
+          </div>
+
+          <!-- Boarding Completion Catalog & Timeline -->
+          <h2>Boarding Completion Catalog &amp; Timeline</h2>
+          <div class="cc-setting-card">
+            <ul class="cc-timeline">
+              <li>Check‑in opens</li>
+              <li>Drop baggage and clear security</li>
+              <li>Enjoy lounge or duty free</li>
+              <li>Boarding begins</li>
+              <li>Doors close &amp; prepare for take‑off</li>
+            </ul>
+          </div>
+
+          <!-- Go to Gate -->
+          <h2>Go to Gate</h2>
+          <div class="cc-setting-card">
+            <p>Check‑in completed! You can proceed to your gate.</p>
+            <p><strong>Gate C06</strong> – South Wing, Heathrow Airport 🛫</p>
+          </div>
+
+          <!-- Wait time calculator and activities -->
+          <h2>Wait time: What to do?</h2>
+          <div class="cc-setting-card">
+            <p>Select an activity while you wait for boarding.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:12px;">
+              <button class="cc-btn" onclick="location.href='chillcabin-cabinconnect.html'">Connect</button>
+              <button class="cc-btn" onclick="location.href='chillcabin-music.html'">Music</button>
+              <button class="cc-btn" onclick="location.href='chillcabin-chat.html'">Chat</button>
+              <button class="cc-btn" onclick="location.href='chillcabin-breathing.html'">Breathing</button>
+            </div>
+          </div>
+
+          <!-- Networking -->
+          <h2>Networking</h2>
+          <div class="cc-setting-card">
+            <p>Meet like‑minded travellers or ask the crew a quick question.</p>
+            <div style="display:flex; flex-wrap:wrap; gap:12px;">
+              <button class="cc-btn" onclick="location.href='chillcabin-cabinconnect.html'">Business Chat</button>
+              <button class="cc-btn" onclick="location.href='chillcabin-cabinconnect.html'">Like‑Minded</button>
+              <button class="cc-btn" onclick="location.href='chillcabin-cabinconnect.html'">Crew Broadband</button>
+            </div>
+          </div>
+
+          <!-- Chill Chat AI -->
+          <h2>Chill Chat AI</h2>
+          <div class="cc-setting-card">
+            <p>Ask any question and get instant answers from our AI assistant.</p>
+            <div id="chatQuestions"></div>
+            <div id="chatAnswer"></div>
+          </div>
+
+          <!-- Take Off Instructions & Reassurance -->
+          <h2>Take‑Off Instructions &amp; Reassurance</h2>
+          <div class="cc-setting-card">
+            <ul>
+              <li>Buckle your seatbelt and keep it fastened whenever seated.</li>
+              <li>Place bags in overhead lockers or under the seat in front of you.</li>
+              <li>Switch electronic devices to flight mode or power them off.</li>
+              <li>Follow crew instructions and watch the safety demonstration.</li>
+              <li>Take a few deep breaths and settle into your seat – you’ve got this!</li>
+            </ul>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Populate profile name on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) {
+        nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+      }
+      loadQuestions();
+    });
+
+    // Q/A pairs for Chill Chat AI
+    const qaPairs = [
+      {q:'What time should I arrive at the airport?', a:'Arrive two hours before domestic flights and three hours before international flights.'},
+      {q:'How can I reduce flight anxiety?', a:'Try breathing exercises, listen to calming music and speak to the crew if you feel uneasy.'},
+      {q:'What can I bring in my carry‑on?', a:'Liquids under 100ml, necessary medication, electronics and personal items are generally allowed.'},
+      {q:'Is Wi‑Fi available on board?', a:'Many airlines offer Wi‑Fi for a fee. You can purchase access once seated.'},
+      {q:'Can I choose my seat?', a:'If you checked in online, you may have already selected a seat. Otherwise speak to the agent at the gate.'},
+      {q:'What happens if my flight is delayed?', a:'You will receive updates from the airline. Use the waiting time to relax and explore our features.'},
+      {q:'Where do I check baggage allowances?', a:'Check your airline’s website or your booking confirmation for specific baggage policies.'},
+      {q:'How do I connect with other passengers?', a:'Use the Connect and Networking features to chat with fellow travellers.'},
+      {q:'What are some relaxing activities before flying?', a:'Listening to music, reading, meditating or doing light stretches can help you feel calm.'},
+      {q:'Are my details stored permanently?', a:'No. All your information is stored locally only for this session and cleared when you sign out.'},
+      {q:'Can I talk to a real person?', a:'Yes. Use the Crew Broadband feature to reach out to cabin crew at any time.'},
+      {q:'What should I do if I miss boarding?', a:'Please contact airline staff immediately. They can advise you on next steps.'},
+      {q:'How do I know my gate?', a:'Your boarding pass and our “Go to Gate” section show the correct gate number.'},
+      {q:'What if I need medical assistance?', a:'Alert the crew via Help or speak to ground staff before boarding.'},
+      {q:'Can I bring food on the plane?', a:'Most airlines allow snacks but check security restrictions for liquids and gels.'},
+      {q:'How do I update my profile details?', a:'Return to the Profile page via the top‑right menu to adjust your information.'},
+      {q:'Will there be turbulence?', a:'Flights may experience turbulence. Our Take‑Off Instructions explain how to stay safe.'},
+      {q:'Can I charge devices at my seat?', a:'Many modern aircraft have USB or power outlets. Check with your airline.'},
+      {q:'What’s the best way to pass time on a flight?', a:'Explore our In‑Flight entertainment, chat modules or simply rest and enjoy your journey.'},
+      {q:'How do I provide feedback?', a:'You can share feedback via the Post‑Flight ChillChat survey after your trip.'}
+    ];
+
+    function loadQuestions() {
+      const container = document.getElementById('chatQuestions');
+      qaPairs.forEach((item, index) => {
+        const btn = document.createElement('button');
+        btn.textContent = item.q;
+        btn.addEventListener('click', () => {
+          displayAnswer(item.a);
+        });
+        container.appendChild(btn);
+      });
+    }
+    function displayAnswer(ans) {
+      const ansEl = document.getElementById('chatAnswer');
+      ansEl.textContent = ans;
+    }
+  </script>
+</body>
+</html>

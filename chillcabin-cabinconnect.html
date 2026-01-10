@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Cabin Connect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+
+<div class="cc-app">
+    <div class="cc-topbar">
+    <div class="cc-top-left">
+      <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+      <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+    </div>
+    <div class="cc-top-right">
+      <div class="cc-top-icons">◦ ◦ ◦</div>
+      <a class="cc-profile" href="chillcabin-profile.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+          <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+        </svg>
+        <span class="cc-profile-name" id="ccProfileName">Guest</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cc-body">
+    <aside class="cc-left">
+      <div class="cc-kicker">Connect to the cabin network</div>
+      <h1>Seamless pairing</h1>
+      <p>Scan once. Your calm tools, chats, and preferences follow you through the cabin.</p>
+    </aside>
+
+    <main class="cc-right">
+      <div class="cc-panel">
+        <div class="cc-split-two">
+
+          <div class="cc-panel soft">
+            <div style="font-weight:900; font-size:18px; margin-bottom:10px;">Connect to the Cabin Network</div>
+
+            <div style="display:flex; gap:14px; align-items:center;">
+              <img src="qr-placeholder.png" alt="QR" style="width:140px; height:140px; border-radius:18px; border:1px solid rgba(255,255,255,.6); background:rgba(255,255,255,.6); padding:10px;">
+              <div style="flex:1; color:rgba(10,30,48,.65); font-weight:700; line-height:1.5;">
+                Scan with your phone or tablet to connect.
+                <br><br>
+                Your settings sync for this flight only (unless you choose otherwise).
+              </div>
+            </div>
+
+            <div class="cc-actions" style="justify-content:flex-end;">
+              <a class="cc-btn primary" href="#">Connected & Synced</a>
+            </div>
+          </div>
+
+          <div class="cc-callout" style="background:
+              linear-gradient(135deg, rgba(255,255,255,.60), rgba(255,255,255,.22)),
+              url('3f933026-910c-4f69-92be-7cf5dfabab21.png');
+              background-size:cover; background-position:center;">
+            <div style="font-weight:900; font-size:18px; margin-bottom:8px;">Connected & Synced</div>
+            <div style="color:rgba(10,30,48,.70); font-weight:700; line-height:1.55;">
+              Chill Cabin tools are now linked across devices:
+              calm mode, flight steps, and optional chats.
+            </div>
+            <div class="cc-actions" style="justify-content:flex-end;">
+              <a class="cc-btn gold" href="#">Adjust pairing</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="cc-callout" style="margin-top:14px;">
+          <div style="font-weight:900; margin-bottom:8px;">Reflect on your journey</div>
+          <div class="cc-pillrow">
+            <div class="cc-pill active">Relaxed</div>
+            <div class="cc-pill">Confident</div>
+            <div class="cc-pill">Worried</div>
+            <div class="cc-pill">Tired</div>
+          </div>
+
+          <div class="cc-actions" style="justify-content:space-between;">
+            <a class="cc-btn" href="#">Share or forget calm data</a>
+            <a class="cc-btn primary" href="chillcabin-onboarding.html">Finish & return home</a>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+  <script>
+    // Populate profile name from local storage if available
+    document.addEventListener('DOMContentLoaded', function() {
+      const prof = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) {
+        nameEl.textContent = prof.firstName ? prof.firstName : 'Guest';
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Terms &amp; Conditions</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Shared UI styles -->
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Background video to match the rest of the app -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <!-- Corner logo -->
+  <div class="cc-corner-logo">Chill Cabin</div>
+
+  <div class="cc-app">
+    <!-- Top bar with brand and profile -->
+    <div class="cc-topbar">
+      <div class="cc-top-left">
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title"><img src="chillcabin-logo.png" alt="Chill Cabin">Chill Cabin</div>
+      </div>
+      <div class="cc-top-right">
+        <div class="cc-top-icons">◦ ◦ ◦</div>
+        <a class="cc-profile" href="chillcabin-profile.html">
+          <!-- Simple avatar icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+            <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+          </svg>
+          <span class="cc-profile-name" id="ccProfileName">Guest</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="cc-body">
+      <!-- Left panel: introduction -->
+      <aside class="cc-left">
+        <div class="cc-kicker">Consent required</div>
+        <h1>Terms &amp; Conditions</h1>
+        <p>Please read through our terms and conditions carefully before proceeding. These terms ensure transparency and outline how Chill Cabin uses and protects your information during this session.</p>
+      </aside>
+
+      <!-- Right panel: scrollable terms content -->
+      <main class="cc-right">
+        <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
+          <h2 style="margin-top:0;">Chill Cabin User Agreement</h2>
+          <p style="white-space:pre-line; line-height:1.6;">
+Welcome to Chill Cabin! We’ve designed this experience to support your emotional wellbeing throughout your journey. By using our prototype, you agree to the following terms:
+
+1. <strong>Personal Data.</strong> Chill Cabin stores information locally on your device solely for the duration of your session. No personal data is transmitted to external servers. When your session ends or you sign out, your data is removed. You remain responsible for deleting any data you wish to clear prior to session end.
+
+2. <strong>Emotional Support Only.</strong> Chill Cabin provides speculative and empathetic guidance designed to help you navigate air travel. We are not a medical provider and do not claim to diagnose, treat, or cure any condition. Always follow the advice of flight crew and professionals.
+
+3. <strong>Fair Use.</strong> You agree to use Chill Cabin respectfully and responsibly. Do not share offensive, abusive, or unlawful content via any of the chat or networking features. We reserve the right to suspend access to anyone who abuses the system.
+
+4. <strong>Speculative Design.</strong> The features showcased in Chill Cabin are conceptual. They are intended to provoke discussion about ethical, inclusive and caring futures in air travel, and may not reflect final products or services.
+
+5. <strong>Liability.</strong> As this is a speculative prototype, Chill Cabin and its creators shall not be liable for any damages arising from its use. You accept all risks associated with using a conceptual service in development.
+
+If you agree to these terms and conditions, click <em>Agree</em> to continue. If you do not agree, simply close this window or navigate back to the previous page.
+          </p>
+          <div class="cc-actions" style="justify-content:flex-start; margin-top:24px;">
+            <button class="cc-btn primary" onclick="agree()">Agree and Continue</button>
+            <button class="cc-btn" onclick="decline()">Decline</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Populate profile name
+    document.addEventListener('DOMContentLoaded', function() {
+      const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) {
+        nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+      }
+    });
+    function agree() {
+      // Navigate to profile settings after agreeing
+      window.location.href = 'chillcabin-profile.html';
+    }
+    function decline() {
+      // If user declines, return to role selection and clear data
+      localStorage.removeItem('cc_userProfile');
+      localStorage.removeItem('cc_userPrefs');
+      alert('You must agree to continue. Returning to role selection.');
+      window.location.href = 'chillcabin-role.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Music Player</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+  <style>
+    .music-table {
+      width:100%;
+      border-collapse:collapse;
+    }
+    .music-table th, .music-table td {
+      padding:8px 12px;
+      border-bottom:1px solid rgba(255,255,255,0.3);
+      text-align:left;
+    }
+    .music-table th {
+      font-weight:600;
+    }
+    .music-play {
+      cursor:pointer;
+      color:var(--accent);
+      font-weight:700;
+    }
+    .music-play:hover {
+      text-decoration:underline;
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <div class="cc-corner-logo">Chill Cabin</div>
+  <div class="cc-app">
+    <div class="cc-topbar">
+      <div class="cc-top-left">
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+      </div>
+      <div class="cc-top-right">
+        <div class="cc-top-icons">◦ ◦ ◦</div>
+        <a class="cc-profile" href="chillcabin-profile.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+            <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+          </svg>
+          <span class="cc-profile-name" id="ccProfileName">Guest</span>
+        </a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <aside class="cc-left">
+        <div class="cc-kicker">Music</div>
+        <h1>Relaxing tunes</h1>
+        <p>Listen to a curated selection of tracks to soothe your nerves and make the most of your waiting time.</p>
+      </aside>
+      <main class="cc-right">
+        <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
+          <h2>Playlist</h2>
+          <table class="music-table">
+            <thead>
+              <tr><th>Track</th><th>Artist</th><th>Duration</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Airborne Calm</td><td>Drift Ensemble</td><td>3:24</td><td><span class="music-play" onclick="play('Airborne Calm')">Play</span></td></tr>
+              <tr><td>Skyward Dreams</td><td>Aurora Waves</td><td>4:12</td><td><span class="music-play" onclick="play('Skyward Dreams')">Play</span></td></tr>
+              <tr><td>Cabin Serenity</td><td>Quiet Horizons</td><td>5:05</td><td><span class="music-play" onclick="play('Cabin Serenity')">Play</span></td></tr>
+              <tr><td>Cloud Drift</td><td>Soft Currents</td><td>4:02</td><td><span class="music-play" onclick="play('Cloud Drift')">Play</span></td></tr>
+              <tr><td>Runway Reverie</td><td>Morning Lights</td><td>3:48</td><td><span class="music-play" onclick="play('Runway Reverie')">Play</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+    });
+    function play(track) {
+      alert('Playing "' + track + '" (feature coming soon)');
+    }
+  </script>
+</body>
+</html>

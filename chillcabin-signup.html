@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Sign Up</title>
+  <!-- Preconnect fonts for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Shared UI styles -->
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <!-- Persistent corner brand mark -->
+  <div class="cc-corner-logo">Chill Cabin</div>
+
+  <div class="cc-app">
+    <!-- Top chrome bar -->
+    <div class="cc-topbar">
+      <div class="cc-top-left">
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title">
+          <img src="chillcabin-logo.png" alt="Chill Cabin">
+          Chill Cabin
+        </div>
+      </div>
+      <!-- Right side of the top bar: icons and profile -->
+      <div class="cc-top-right">
+        <div class="cc-top-icons">◦ ◦ ◦</div>
+        <a class="cc-profile" href="chillcabin-profile.html">
+          <!-- Simple user icon using inline SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+            <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+          </svg>
+          <span class="cc-profile-name" id="ccProfileName">Guest</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="cc-body">
+      <!-- Left panel with description -->
+      <aside class="cc-left">
+        <div class="cc-kicker">Sign up</div>
+        <h1>Start your private session</h1>
+        <p>Your information stays on this device. We don’t store or share it.</p>
+      </aside>
+
+      <!-- Right panel with sign up form -->
+      <main class="cc-right">
+        <div class="cc-panel">
+          <form onsubmit="startSession(event)">
+            <!-- Use a simple vertical layout for the input fields -->
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <input type="email" class="cc-input" placeholder="Email" required>
+              <input type="tel" class="cc-input" placeholder="Mobile number" required>
+              <input type="text" class="cc-input" placeholder="First name" required>
+              <input type="text" class="cc-input" placeholder="Surname" required>
+              <input type="text" class="cc-input" placeholder="Flight number / model" required>
+              <input type="text" class="cc-input" placeholder="Boarding pass number" required>
+              <input type="date" class="cc-input" placeholder="Flight date">
+            </div>
+            <div class="cc-actions" style="justify-content:flex-start; margin-top:20px;">
+              <button type="submit" class="cc-btn primary">Continue</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Populate the profile name from previously stored data (if any)
+    document.addEventListener('DOMContentLoaded', () => {
+      const prof = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameSpan = document.getElementById('ccProfileName');
+      if (nameSpan) {
+        nameSpan.textContent = prof.firstName ? prof.firstName : 'Guest';
+      }
+    });
+    // Handle form submission. Persist data locally and show a confirmation before continuing.
+    function startSession(event) {
+      event.preventDefault();
+      const form = event.target;
+      const data = {
+        email: form.elements[0].value,
+        mobile: form.elements[1].value,
+        firstName: form.elements[2].value,
+        surname: form.elements[3].value,
+        flight: form.elements[4].value,
+        boardingPass: form.elements[5].value,
+        flightDate: form.elements[6].value
+      };
+      // Save profile data in localStorage for this session
+      localStorage.setItem('cc_userProfile', JSON.stringify(data));
+      // Notify user of success
+      alert(`Thanks ${data.firstName}! You’re signed up for flight ${data.flight} with boarding pass ${data.boardingPass}.`);
+      // Redirect to the terms & conditions screen before continuing
+      window.location.href = 'chillcabin-terms.html';
+    }
+  </script>
+</body>
+</html>

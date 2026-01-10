@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Preferences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <div class="cc-corner-logo">Chill Cabin</div>
+
+<div class="cc-app">
+    <div class="cc-topbar">
+    <div class="cc-top-left">
+      <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+      <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+    </div>
+    <!-- Right side: original icons and profile chip -->
+    <div class="cc-top-right">
+      <div class="cc-top-icons">⚙︎ ⌁ ⌁</div>
+      <a class="cc-profile" href="chillcabin-profile.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+          <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+        </svg>
+        <span class="cc-profile-name" id="ccProfileName">Guest</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cc-body">
+    <aside class="cc-left">
+      <div class="cc-kicker">We design for different ways of</div>
+      <h1>Seeing, hearing, and processing.</h1>
+      <p>You can adjust these anytime during your journey.</p>
+    </aside>
+
+    <main class="cc-right">
+      <div class="cc-row">
+        <div class="cc-nav">
+          <div class="cc-nav-item active">Language <span>›</span></div>
+          <div class="cc-nav-item">Reading Style <span>›</span></div>
+          <div class="cc-nav-item">Sensory Preferences <span>›</span></div>
+          <div class="cc-nav-item">Cognitive Support <span>›</span></div>
+        </div>
+
+        <div class="cc-panel">
+          <div style="font-weight:900; font-size:20px; margin-bottom:8px;">Language</div>
+
+          <div style="display:flex; gap:10px; align-items:center; margin:12px 0;">
+            <div style="flex:1; color:rgba(10,30,48,.65); font-weight:700;">Language</div>
+            <select>
+              <option>English</option>
+              <option>Hindi</option>
+              <option>French</option>
+              <option>Arabic</option>
+            </select>
+          </div>
+
+          <div style="display:flex; gap:10px; align-items:center; margin:12px 0;">
+            <div style="flex:1; color:rgba(10,30,48,.65); font-weight:700;">Reading Style</div>
+            <select>
+              <option>Standard</option>
+              <option>Simplified</option>
+              <option>Extra Support</option>
+            </select>
+          </div>
+
+          <div style="display:flex; gap:10px; align-items:center; margin:12px 0;">
+            <div style="flex:1; color:rgba(10,30,48,.65); font-weight:700;">Text Size</div>
+            <input type="range" min="12" max="22" value="16" style="width:220px">
+          </div>
+
+          <div class="cc-callout" style="margin-top:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:10px 0;">
+              <div style="font-weight:800; color:rgba(10,30,48,.70);">Reduce Motion</div>
+              <input type="checkbox" checked>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:10px 0;">
+              <div style="font-weight:800; color:rgba(10,30,48,.70);">Soften Sounds</div>
+              <input type="checkbox" checked>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:10px 0;">
+              <div style="font-weight:800; color:rgba(10,30,48,.70);">Increase Contrast</div>
+              <input type="checkbox">
+            </div>
+          </div>
+
+          <div class="cc-actions" style="justify-content:flex-end;">
+            <a class="cc-btn primary" href="chillcabin-feelings.html">Confirm & Continue</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+  <script>
+    // Populate the profile name on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const prof = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) {
+        nameEl.textContent = prof.firstName ? prof.firstName : 'Guest';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Flight Info</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+
+<div class="cc-app">
+    <div class="cc-topbar">
+    <div class="cc-top-left">
+      <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+      <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+    </div>
+    <div class="cc-top-right">
+      <div class="cc-top-icons">◦ ◦ ◦</div>
+      <a class="cc-profile" href="chillcabin-profile.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+          <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+        </svg>
+        <span class="cc-profile-name" id="ccProfileName">Guest</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="cc-body">
+    <aside class="cc-left">
+      <div class="cc-kicker">Preparing to fly</div>
+      <h1>What happens next</h1>
+      <p>Small clarity reduces overload. Here’s what the next steps usually look like.</p>
+    </aside>
+
+    <main class="cc-right">
+      <div class="cc-row">
+        <div class="cc-nav">
+          <div class="cc-nav-item">Prepare to fly <span>›</span></div>
+          <div class="cc-nav-item">Emotional Check-In <span>›</span></div>
+          <div class="cc-nav-item">Exploring Connections <span>›</span></div>
+          <div class="cc-nav-item active">Flight Info <span>›</span></div>
+        </div>
+
+        <div class="cc-panel">
+          <div class="cc-split-two">
+            <div class="cc-panel soft">
+              <div style="font-weight:900; font-size:22px;">Next up:</div>
+              <div style="font-weight:900; font-size:22px; margin-bottom:10px;">Baggage & Boarding</div>
+              <ul style="margin:0; padding-left:18px; color:rgba(10,30,48,.70); font-weight:700; line-height:1.7;">
+                <li>Bag details made simple</li>
+                <li>Short security tips</li>
+                <li>Boarding order explained</li>
+              </ul>
+
+              <div class="cc-actions" style="justify-content:flex-start;">
+                <a class="cc-btn" href="chillcabin-data.html">Pause & Resume Later</a>
+              </div>
+            </div>
+
+            <div class="cc-callout">
+              <div style="font-weight:900; font-size:20px; margin-bottom:8px;">Just a heads up…</div>
+              <div style="color:rgba(10,30,48,.70); font-weight:700; line-height:1.6;">
+                Turbulence can feel like a bumpy road — not a problem.
+                It’s a sign the sky is adjusting, not anything wrong.
+                <br><br>
+                You’re safe with us.
+              </div>
+
+              <div class="cc-actions" style="justify-content:flex-end;">
+                <a class="cc-btn primary" href="chillcabin-consent.html">Got it</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+  <script>
+    // Populate the user name on overview page
+    document.addEventListener('DOMContentLoaded', function() {
+      const prof = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) {
+        nameEl.textContent = prof.firstName ? prof.firstName : 'Guest';
+      }
+    });
+  </script>
+
+</body>
+</html>

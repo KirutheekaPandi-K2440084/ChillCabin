@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Post‑Flight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <div class="cc-corner-logo">Chill Cabin</div>
+  <div class="cc-app">
+    <div class="cc-topbar">
+      <div class="cc-top-left">
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+      </div>
+      <div class="cc-top-right">
+        <div class="cc-top-icons">◦ ◦ ◦</div>
+        <a class="cc-profile" href="chillcabin-profile.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+            <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+          </svg>
+          <span class="cc-profile-name" id="ccProfileName">Guest</span>
+        </a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <aside class="cc-left">
+        <div class="cc-kicker">Post‑Flight</div>
+        <h1>Welcome back</h1>
+        <p>Reflect on your journey, complete final steps and share your experience.</p>
+      </aside>
+      <main class="cc-right">
+        <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
+          <!-- Ready to land -->
+          <h2>Ready to land</h2>
+          <div class="cc-setting-card">
+            <p>Your aircraft is descending and preparing for landing. Expected touchdown speed: 155 knots.</p>
+            <p><strong>Expected landing:</strong> Smooth 🛬</p>
+          </div>
+
+          <!-- Mood check after flight -->
+          <h2>How are you feeling now?</h2>
+          <div class="cc-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px;">
+            <div class="cc-tile cc-calm" onclick="selectMood('Calm')"><div class="t1">Calm</div><div class="t2">At ease</div></div>
+            <div class="cc-tile cc-anx" onclick="selectMood('Anxious')"><div class="t1">Anxious</div><div class="t2">Still uneasy</div></div>
+            <div class="cc-tile cc-tired" onclick="selectMood('Tired')"><div class="t1">Tired</div><div class="t2">Exhausted</div></div>
+            <div class="cc-tile cc-curious" onclick="selectMood('Happy')"><div class="t1">Happy</div><div class="t2">Content</div></div>
+            <div class="cc-tile cc-over" onclick="selectMood('Relieved')"><div class="t1">Relieved</div><div class="t2">Glad it’s over</div></div>
+          </div>
+
+          <!-- ChillChat summary survey -->
+          <h2>ChillChat journey summary</h2>
+          <div class="cc-setting-card">
+            <p>We’d love to hear about your flight. Tap on a question to see our thoughts.</p>
+            <div id="surveyQuestions"></div>
+            <div id="surveyAnswer"></div>
+          </div>
+
+          <!-- Landing checklist -->
+          <h2>Landing checklist &amp; instructions</h2>
+          <div class="cc-setting-card">
+            <ul>
+              <li>Remain seated until the seatbelt sign is switched off.</li>
+              <li>Collect all personal belongings from under the seat and overhead bins.</li>
+              <li>Follow signs to immigration and baggage claim.</li>
+              <li>Have your passport and documentation ready for inspection.</li>
+            </ul>
+          </div>
+
+          <!-- Visa and baggage info -->
+          <h2>Visa fast track &amp; baggage collection</h2>
+          <div class="cc-setting-card">
+            <ul>
+              <li>Fast track visa processing is available at this terminal for eligible travellers.</li>
+              <li>Self‑service eVisa kiosks are located near immigration counters.</li>
+              <li>Baggage collection is at Belt 07 on the Ground Floor.</li>
+            </ul>
+          </div>
+
+          <!-- Message to loved ones -->
+          <h2>Message to loved ones</h2>
+          <div class="cc-setting-card">
+            <p>Let someone know you’ve landed safely.</p>
+            <label>
+              Recipient number<br>
+              <input type="tel" class="cc-input" id="msgNumber" placeholder="e.g. +44 7700 900123">
+            </label>
+            <br><br>
+            <label>
+              Message<br>
+              <select id="msgTemplate" class="cc-input">
+                <option value="I’ve landed safely! See you soon.">I’ve landed safely! See you soon.</option>
+                <option value="Touchdown complete – I’m on my way home.">Touchdown complete – I’m on my way home.</option>
+                <option value="Flight over! Heading to collect my bags now.">Flight over! Heading to collect my bags now.</option>
+              </select>
+            </label>
+            <div class="cc-actions" style="justify-content:flex-start; margin-top:12px;">
+              <button class="cc-btn primary" onclick="sendMessage()">Send message</button>
+            </div>
+          </div>
+
+          <!-- Thank you -->
+          <h2>Thank you &amp; fly again</h2>
+          <div class="cc-setting-card" style="text-align:center;">
+            <p>Thank you for flying with Chill Cabin.</p>
+            <p>We hope you enjoyed a calmer, more supportive journey. See you again soon!</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+      loadSurvey();
+    });
+    function selectMood(mood) {
+      localStorage.setItem('cc_postflightMood', mood);
+      alert('Thanks for sharing how you feel: ' + mood);
+    }
+    // Survey Q/A for summary
+    const survey = [
+      {q:'How was your overall experience?', a:'We hope your journey was calming and supportive. We’d love your feedback to improve.'},
+      {q:'Would you recommend Chill Cabin?', a:'Your recommendation helps us grow. Thank you for trusting us on your trip.'},
+      {q:'Any improvements for us?', a:'Please share any ideas on how we can better support your future flights.'}
+    ];
+    function loadSurvey() {
+      const container = document.getElementById('surveyQuestions');
+      survey.forEach(item => {
+        const btn = document.createElement('button');
+        btn.textContent = item.q;
+        btn.style.display = 'block';
+        btn.style.width = '100%';
+        btn.style.margin = '4px 0';
+        btn.style.padding = '8px 12px';
+        btn.style.borderRadius = '12px';
+        btn.style.background = 'rgba(255,255,255,0.5)';
+        btn.style.border = '1px solid rgba(255,255,255,0.4)';
+        btn.style.color = 'var(--ink)';
+        btn.style.textAlign = 'left';
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', () => {
+          document.getElementById('surveyAnswer').textContent = item.a;
+        });
+        container.appendChild(btn);
+      });
+    }
+    function sendMessage() {
+      const number = document.getElementById('msgNumber').value;
+      const msg = document.getElementById('msgTemplate').value;
+      if (!number) {
+        alert('Please enter a valid recipient number.');
+        return;
+      }
+      alert('Your message has been sent to ' + number + ':\n"' + msg + '"');
+    }
+  </script>
+</body>
+</html>

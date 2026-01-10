@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chill Cabin – Choose Role</title>
+  <!-- Preconnect fonts for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Shared UI styles -->
+  <link rel="stylesheet" href="chillcabin-ui.css">
+</head>
+<body>
+  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+  <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
+    <source src="chillcabin-bg-video.mp4" type="video/mp4">
+  </video>
+  <!-- Persistent corner brand mark -->
+  <div class="cc-corner-logo">Chill Cabin</div>
+
+  <div class="cc-app">
+    <!-- Top chrome bar -->
+    <div class="cc-topbar">
+      <div class="cc-top-left">
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title">
+          <img src="chillcabin-logo.png" alt="Chill Cabin">
+          Chill Cabin
+        </div>
+      </div>
+      <div class="cc-top-right">
+        <div class="cc-top-icons">◦ ◦ ◦</div>
+        <a class="cc-profile" href="chillcabin-profile.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+            <path d="M6 18c0-3.31 2.69-6 6-6s6 2.69 6 6v3H6v-3z"></path>
+          </svg>
+          <span class="cc-profile-name" id="ccProfileName">Guest</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="cc-body">
+      <!-- Left panel with instructions -->
+      <aside class="cc-left">
+        <div class="cc-kicker">Who are you?</div>
+        <h1>Please select your role</h1>
+        <p>Choose the role that best describes you. This helps us personalise your journey.</p>
+      </aside>
+
+      <!-- Right panel with role selection -->
+      <main class="cc-right">
+        <div class="cc-panel">
+          <div class="cc-grid">
+            <!-- Pilot role: disabled for future use -->
+            <div class="cc-tile cc-calm" onclick="selectRole('pilot')" style="cursor:not-allowed; opacity:.45;">
+              <div class="t1">Pilot</div><div class="t2">Coming soon</div>
+            </div>
+            <!-- Passenger role: active -->
+            <div class="cc-tile cc-anx" onclick="selectRole('passenger')">
+              <div class="t1">Passenger</div><div class="t2">Join your calm journey</div>
+            </div>
+            <!-- Cabin crew role: disabled for future use -->
+            <div class="cc-tile cc-curious" onclick="selectRole('crew')" style="cursor:not-allowed; opacity:.45;">
+              <div class="t1">Cabin Crew</div><div class="t2">Coming soon</div>
+            </div>
+            <!-- Tech support role: disabled for future use -->
+            <div class="cc-tile cc-neutral" onclick="selectRole('tech')" style="cursor:not-allowed; opacity:.45;">
+              <div class="t1">Tech Support</div><div class="t2">Coming soon</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Handle role selection. Only passenger role navigates forward.
+    function selectRole(role) {
+      if (role === 'passenger') {
+        window.location.href = 'chillcabin-signup.html';
+      } else {
+        alert('This role is not available yet.');
+      }
+    }
+  </script>
+
+  <!-- Set the profile name on the role page -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+      const nameEl = document.getElementById('ccProfileName');
+      if (nameEl) {
+        nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+      }
+    });
+  </script>
+</body>
+</html>

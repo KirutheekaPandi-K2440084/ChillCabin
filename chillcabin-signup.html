@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
+<!-- Restart / Refresh Button -->
+<button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
+
   <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
@@ -23,7 +26,13 @@
     <!-- Top chrome bar -->
     <div class="cc-topbar">
       <div class="cc-top-left">
-        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <!-- Back and Home navigation icons -->
+        <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </a>
+<span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
         <div class="cc-title">
           <img src="chillcabin-logo.png" alt="Chill Cabin">
           Chill Cabin
@@ -68,6 +77,10 @@
             <div class="cc-actions" style="justify-content:flex-start; margin-top:20px;">
               <button type="submit" class="cc-btn primary">Continue</button>
             </div>
+            <!-- Guest login option -->
+            <div style="margin-top:12px;">
+              <button type="button" class="cc-btn" onclick="guestLogin()">Continue as Guest</button>
+            </div>
           </form>
         </div>
       </main>
@@ -103,6 +116,32 @@
       // Redirect to the terms & conditions screen before continuing
       window.location.href = 'chillcabin-terms.html';
     }
+
+    // Allow users to continue without signing up
+    function guestLogin() {
+      // Create a minimal guest profile
+      const guest = { firstName: 'Guest', isGuest: true };
+      localStorage.setItem('cc_userProfile', JSON.stringify(guest));
+      alert('You are continuing as a guest.');
+      // Direct guests to the terms & conditions screen
+      window.location.href = 'chillcabin-terms.html';
+    }
   </script>
+  <!-- Site footer with copyright and contact info -->
+  <footer class="cc-footer">
+    &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
+    <a href="chillcabin-about.html">About Us</a>
+  </footer>
+
+<script>
+  function restartApp() {
+    const ok = confirm("Restart Chill Cabin from the beginning? Your session data will be cleared.");
+    if (ok) {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "index.html";
+    }
+  }
+</script>
 </body>
 </html>

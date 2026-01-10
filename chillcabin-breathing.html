@@ -32,6 +32,9 @@
   </style>
 </head>
 <body>
+<!-- Restart / Refresh Button -->
+<button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
+
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
   </video>
@@ -39,6 +42,18 @@
   <div class="cc-app">
     <div class="cc-topbar">
       <div class="cc-top-left">
+        <!-- Back and Home navigation icons -->
+        <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </a>
+        <a href="chillcabin-home.html" class="cc-nav-icon" title="Home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
+          </svg>
+        </a>
         <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
         <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
       </div>
@@ -56,11 +71,13 @@
     <div class="cc-body">
       <aside class="cc-left">
         <div class="cc-kicker">Breathing</div>
-        <h1>Guided breathing</h1>
+        <h1><span role="img" aria-label="Breathing">🧘</span> Guided breathing</h1>
         <p>Slow down and centre yourself with this simple breathing exercise. Follow the animation or read the instructions to calm your mind and body.</p>
       </aside>
       <main class="cc-right">
         <div class="cc-panel" style="text-align:center;">
+          <!-- Decorative image for breathing module -->
+          
           <div class="breathing-circle" id="breathingCircle">Start</div>
           <p id="breathingInstruction">Press start to begin a 4‑4‑4 breathing cycle.</p>
           <button class="cc-btn primary" onclick="startBreathing()">Start</button>
@@ -125,5 +142,21 @@
       instruction.textContent = 'Press start to begin a 4‑4‑4 breathing cycle.';
     }
   </script>
+  <!-- Footer with copyright and contact -->
+  <footer class="cc-footer">
+    &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
+    <a href="chillcabin-about.html">About Us</a>
+  </footer>
+
+<script>
+  function restartApp() {
+    const ok = confirm("Restart Chill Cabin from the beginning? Your session data will be cleared.");
+    if (ok) {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "index.html";
+    }
+  }
+</script>
 </body>
 </html>

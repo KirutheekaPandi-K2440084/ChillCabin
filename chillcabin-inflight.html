@@ -25,6 +25,9 @@
   </style>
 </head>
 <body>
+<!-- Restart / Refresh Button -->
+<button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
+
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
   </video>
@@ -32,6 +35,18 @@
   <div class="cc-app">
     <div class="cc-topbar">
       <div class="cc-top-left">
+        <!-- Back and Home navigation icons -->
+        <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </a>
+        <a href="chillcabin-home.html" class="cc-nav-icon" title="Home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
+          </svg>
+        </a>
         <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
         <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
       </div>
@@ -54,8 +69,12 @@
       </aside>
       <main class="cc-right">
         <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
+          <!-- Decorative image for the in-flight module -->
+          
           <!-- Mood check -->
-          <h2>How are you feeling today?</h2>
+          <h2><span role="img" aria-label="Feeling">🙂</span> How are you feeling today?</h2>
+          <!-- Image next to mood check section -->
+          
           <div class="cc-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px;">
             <div class="cc-tile cc-calm" onclick="selectMood('Calm')"><div class="t1">Calm</div><div class="t2">At ease</div></div>
             <div class="cc-tile cc-anx" onclick="selectMood('Anxious')"><div class="t1">Anxious</div><div class="t2">Uneasy</div></div>
@@ -68,7 +87,9 @@
           </div>
 
           <!-- Zone‑based emotional awareness -->
-          <h2>Zone‑Based Emotional Awareness</h2>
+          <h2><span role="img" aria-label="Emotional awareness">🧠</span> Zone‑Based Emotional Awareness</h2>
+          <!-- Image next to emotional awareness section -->
+          
           <div class="cc-setting-card">
             <p>The crew uses anonymous, aggregated mood data to understand how the cabin is feeling and provide support when needed. No personal information is shared.</p>
             <table class="cc-settings-table">
@@ -79,7 +100,9 @@
           </div>
 
           <!-- Breathing & music -->
-          <h2>Breathing guide &amp; Music</h2>
+          <h2><span role="img" aria-label="Breathing">🧘</span> Breathing guide &amp; Music</h2>
+          <!-- Image next to breathing & music section -->
+          
           <div class="cc-setting-card">
             <p>Need a moment? Practise a guided breathing exercise or listen to soothing tracks.</p>
             <div style="display:flex; gap:12px; flex-wrap:wrap;">
@@ -90,7 +113,9 @@
           </div>
 
           <!-- Entertainment surfing -->
-          <h2>In‑Flight Entertainment</h2>
+          <h2><span role="img" aria-label="Entertainment">🎬</span> In‑Flight Entertainment</h2>
+          <!-- Image next to entertainment section -->
+          
           <div class="cc-setting-card">
             <p>Explore a variety of entertainment options:</p>
             <ul style="margin-left:20px;">
@@ -103,14 +128,18 @@
           </div>
 
           <!-- Flight tracking -->
-          <h2>Track Your Flight</h2>
+          <h2><span role="img" aria-label="Track flight">✈️</span> Track Your Flight</h2>
+          <!-- Image next to flight tracking section -->
+          
           <div class="cc-setting-card">
             <p>Your flight is currently cruising at 35,000 ft with a ground speed of 450 knots. Estimated arrival time is in 2h 30m.</p>
             <p>The flight path takes you over the Atlantic Ocean heading towards London Heathrow. Sit back and enjoy the view!</p>
           </div>
 
           <!-- Help section -->
-          <h2>Help (?)</h2>
+          <h2><span role="img" aria-label="Help">❓</span> Help</h2>
+          <!-- Image next to help section -->
+          
           <div class="cc-setting-card">
             <p>If you need immediate assistance, the crew is here for you.</p>
             <div style="display:flex; flex-wrap:wrap; gap:12px;">
@@ -121,7 +150,9 @@
           </div>
 
           <!-- Turbulence assurance -->
-          <h2>Turbulence Assurance</h2>
+          <h2><span role="img" aria-label="Turbulence">🌩️</span> Turbulence Assurance</h2>
+          <!-- Image next to turbulence section -->
+          
           <div class="cc-setting-card">
             <p>Stay informed about in‑flight turbulence and how to manage it calmly.</p>
             <p>Current turbulence:</p>
@@ -141,7 +172,9 @@
           </div>
 
           <!-- Connect to apps -->
-          <h2>Connect to Apps</h2>
+          <h2><span role="img" aria-label="Apps">📱</span> Connect to Apps</h2>
+          <!-- Image next to connect apps section -->
+          
           <div class="cc-setting-card">
             <p>Make the most of the onboard connectivity.</p>
             <ul style="margin-left:20px;">
@@ -165,5 +198,29 @@
       alert('Mood recorded: ' + mood);
     }
   </script>
+  <!-- Footer with copyright and contact -->
+  
+          <div class="cc-setting-card" style="text-align:center; margin-top:18px;">
+            <h3 style="margin:0 0 10px 0;">Continue your journey</h3>
+            <div class="cc-actions" style="justify-content:center;">
+              <a class="cc-btn primary" href="chillcabin-postflight.html">Go to Post‑Flight</a>
+              <a class="cc-btn" href="chillcabin-home.html">Back to Home</a>
+            </div>
+          </div>
+<footer class="cc-footer">
+    &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
+    <a href="chillcabin-about.html">About Us</a>
+  </footer>
+
+<script>
+  function restartApp() {
+    const ok = confirm("Restart Chill Cabin from the beginning? Your session data will be cleared.");
+    if (ok) {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "index.html";
+    }
+  }
+</script>
 </body>
 </html>

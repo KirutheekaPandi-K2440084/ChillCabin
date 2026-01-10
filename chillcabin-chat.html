@@ -10,17 +10,34 @@
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
+<!-- Restart / Refresh Button -->
+<button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
+
   <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
   </video>
+  <!-- Corner brand mark -->
+  <div class="cc-corner-logo">Chill Cabin</div>
 
 <div class="cc-app">
     <div class="cc-topbar">
     <div class="cc-top-left">
-      <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
-      <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
-    </div>
+        <!-- Back and Home navigation icons -->
+        <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </a>
+        <a href="chillcabin-home.html" class="cc-nav-icon" title="Home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
+          </svg>
+        </a>
+        <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
+        <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
+      </div>
     <div class="cc-top-right">
       <div class="cc-top-icons">◦ ◦ ◦</div>
       <a class="cc-profile" href="chillcabin-profile.html">
@@ -55,16 +72,12 @@
             We’ll guide a gentle, grounding conversation.
           </div>
 
-          <div class="cc-chat">
-            <div class="cc-bubble system">You’re not alone in this.</div>
-            <div class="cc-bubble system">We can just breathe together for a moment if you’d like.</div>
-            <div class="cc-bubble me">Thank you… I’m feeling a bit tense.</div>
-            <div class="cc-bubble system">That makes sense. Want a short, quiet breathing count?</div>
-          </div>
+          <!-- Dynamic chat box: messages will be appended here -->
+          <div id="chatBox" class="cc-chat" style="max-height:220px; overflow-y:auto;"></div>
 
           <div style="display:flex; gap:10px; margin-top:12px;">
-            <input class="cc-input" placeholder="Type something gentle…">
-            <a class="cc-btn primary" href="#" onclick="return false;">Send</a>
+            <input id="chatInput" class="cc-input" placeholder="Type something gentle…" onkeypress="if(event.key==='Enter'){sendMessage();}">
+            <button class="cc-btn primary" onclick="sendMessage()">Send</button>
           </div>
 
           <div class="cc-actions" style="justify-content:space-between;">
@@ -78,15 +91,139 @@
 </div>
 
   <script>
-    // Update profile name on chat pages
+    // Update profile name on chat pages and initialise the chat
     document.addEventListener('DOMContentLoaded', function() {
       const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
       if (nameEl) {
         nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
       }
+      // Initialise chat with welcome messages
+      initChat();
     });
+
+    /*
+      Dynamic chat implementation
+      Users can type a message and the assistant will respond with a random
+      supportive phrase from a large set of predefined responses. The chat
+      messages are appended to the chatBox element and scrolled to the bottom.
+    */
+    // Predefined set of supportive responses (50+)
+    const chatResponses = [
+      "I'm here with you. Take a deep breath.",
+      "You're doing great – keep it up!",
+      "Flying can be stressful; it's okay to feel that way.",
+      "Let’s focus on something calming together.",
+      "Remember, turbulence is normal and planes are built to handle it.",
+      "Your feelings are valid and you’re not alone.",
+      "It might help to listen to some soothing music.",
+      "Stretch your legs or wiggle your toes to ease tension.",
+      "Close your eyes and imagine your favourite place.",
+      "A warm drink can be comforting before a flight.",
+      "Take a moment to notice five things you can see around you.",
+      "Focus on the slow rhythm of your breathing.",
+      "Talk to a crew member if you need extra support.",
+      "Plan something nice to look forward to after the flight.",
+      "You have the strength to get through this journey.",
+      "Think of how proud you’ll be once you arrive.",
+      "It’s okay to distract yourself with a movie or book.",
+      "Remember why you’re travelling – there’s something waiting for you.",
+      "Hydrate well and keep a bottle of water handy.",
+      "Travel with a friend or reach out to a fellow passenger.",
+      "Take a slow, deep breath in through your nose and out through your mouth.",
+      "Allow yourself to feel whatever comes up without judgment.",
+      "You can ask me anything – I’m here to help.",
+      "Consider writing down your thoughts to release anxiety.",
+      "Try counting backwards from 30 if you feel overwhelmed.",
+      "Adjust your seat and find a comfortable position.",
+      "Look out the window and find a cloud shape you like.",
+      "Remind yourself that pilots and crew are trained experts.",
+      "Light reading can take your mind off worries.",
+      "If you’re tired, it’s okay to rest your eyes.",
+      "Visualise your destination and the people you’ll meet.",
+      "Repeat a calming phrase to yourself silently.",
+      "Try a gentle neck stretch to relieve tension.",
+      "You deserve a calm and safe journey.",
+      "Sometimes talking helps – feel free to share more.",
+      "Let’s take things one moment at a time.",
+      "Even small steps toward comfort are victories.",
+      "Remember, there’s no right or wrong way to feel.",
+      "Think of something that makes you laugh.",
+      "It’s okay to ask for assistance at any time.",
+      "Notice the support of the seat beneath you.",
+      "Everything you’re feeling is temporary.",
+      "Would you like to try a quick breathing exercise?",
+      "Picture your favourite meal waiting for you upon arrival.",
+      "You’ve handled challenges before – this is another step.",
+      "Count three things you can hear right now.",
+      "Let go of worrying about others’ expectations.",
+      "Keep focusing on the present moment.",
+      "We can talk about something fun if you’d like.",
+      "You’ve got this. I’m with you all the way."
+    ];
+
+    // Initialise chat with a system greeting
+    function initChat() {
+      const chatBox = document.getElementById('chatBox');
+      if (chatBox) {
+        chatBox.innerHTML = '';
+        appendSystemMessage("You’re not alone in this.");
+        appendSystemMessage("We can just breathe together for a moment if you’d like.");
+      }
+    }
+
+    // Append a user message to the chat
+    function appendUserMessage(msg) {
+      const chatBox = document.getElementById('chatBox');
+      const bubble = document.createElement('div');
+      bubble.className = 'cc-bubble me';
+      bubble.textContent = msg;
+      chatBox.appendChild(bubble);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Append a system message
+    function appendSystemMessage(msg) {
+      const chatBox = document.getElementById('chatBox');
+      const bubble = document.createElement('div');
+      bubble.className = 'cc-bubble system';
+      bubble.textContent = msg;
+      chatBox.appendChild(bubble);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Handle sending a message
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+      appendUserMessage(text);
+      input.value = '';
+      // Pick a random response
+      const resp = chatResponses[Math.floor(Math.random() * chatResponses.length)];
+      // Simulate brief delay before responding
+      setTimeout(() => {
+        appendSystemMessage(resp);
+      }, 400);
+    }
   </script>
 
+  <!-- Footer with copyright and contact information -->
+  <footer class="cc-footer">
+    &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
+    <a href="chillcabin-about.html">About Us</a>
+  </footer>
+
+
+<script>
+  function restartApp() {
+    const ok = confirm("Restart Chill Cabin from the beginning? Your session data will be cleared.");
+    if (ok) {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "index.html";
+    }
+  }
+</script>
 </body>
 </html>

@@ -393,3 +393,69 @@ body{
   background: linear-gradient(135deg, rgba(47,109,230,.18), rgba(119,181,255,.18));
   color: rgba(10,30,48,.88);
 }
+
+
+/* Footer emphasis */
+.cc-footer{
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+}
+/* Transparent emoji icon (replaces repeated section thumbnails) */
+.cc-emoji-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 30px;
+  line-height: 1;
+  margin: 6px 0 10px 0;
+}
+
+
+/* Restart / Refresh floating button */
+.cc-restart-btn{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: linear-gradient(135deg, rgba(255,122,24,.92), rgba(255,61,129,.92));
+  color: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+  backdrop-filter: blur(10px);
+}
+.cc-restart-btn:hover{
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 14px 28px rgba(0,0,0,.22);
+}
+
+/* Make pill buttons more colourful + shiny */
+.cc-pill{
+  background: linear-gradient(135deg, rgba(255,255,255,.70), rgba(255,255,255,.45));
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.cc-pill:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(0,0,0,.12);
+  background: linear-gradient(135deg, rgba(119,181,255,.35), rgba(47,109,230,.18));
+}
+.cc-pill.active{
+  background: linear-gradient(135deg, rgba(47,109,230,.40), rgba(119,181,255,.28));
+  box-shadow: 0 12px 24px rgba(47,109,230,.18);
+}
+
+/* Ensure plain buttons inside pill rows inherit style */
+.cc-pillrow button{
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+

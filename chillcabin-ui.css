@@ -14,6 +14,75 @@
   --gold:#eac67a;
 }
 
+/*
+  Navigation icons for back/home actions
+  These circular buttons appear in the top bar and use the same accent
+  gradient as our primary buttons. A slight shadow and hover translation
+  give them a tactile feel. The embedded SVG icons inherit the current
+  colour so they remain visible on the gradient.
+*/
+.cc-nav-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.18);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  margin-right: 10px;
+  text-decoration: none;
+}
+.cc-nav-icon:hover {
+  transform: translateY(-2px);
+}
+.cc-nav-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+/* Footer at the bottom of each page
+   Provides copyright and contact information. A subtle border and
+   translucent background separate it from the main content without
+   overpowering the layout. Links inside the footer inherit the
+   accent colour for emphasis.*/
+.cc-footer {
+  text-align: center;
+  font-size: 14px;
+  padding: 16px;
+  color: rgba(10,30,48,0.70);
+  background: rgba(255,255,255,0.35);
+  border-top: 1px solid rgba(255,255,255,0.35);
+}
+.cc-footer a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Gradient text styling for headings
+   Apply a soft gradient across h1 and h2 elements in our layout. This
+   effect uses background-clip to fill the text with a gradient and
+   ensures that text remains crisp on high DPI screens. */
+.cc-left h1, .cc-panel h2 {
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Optional images adjacent to sections can reuse this class
+   It constrains width, rounds corners and adds gentle spacing. */
+.cc-section-img {
+  max-width: 100%;
+  border-radius: 16px;
+  margin: 12px 0;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
 *{box-sizing:border-box}
 html,body{height:100%;}
 body{
@@ -632,3 +701,69 @@ body.splash .cc-bg-video{
   margin-bottom: 20px;
   color: rgba(10,30,48,.75);
 }
+
+
+/* Footer emphasis */
+.cc-footer{
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+}
+/* Transparent emoji icon (replaces repeated section thumbnails) */
+.cc-emoji-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size: 30px;
+  line-height: 1;
+  margin: 6px 0 10px 0;
+}
+
+
+/* Restart / Refresh floating button */
+.cc-restart-btn{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.55);
+  background: linear-gradient(135deg, rgba(255,122,24,.92), rgba(255,61,129,.92));
+  color: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+  backdrop-filter: blur(10px);
+}
+.cc-restart-btn:hover{
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 14px 28px rgba(0,0,0,.22);
+}
+
+/* Make pill buttons more colourful + shiny */
+.cc-pill{
+  background: linear-gradient(135deg, rgba(255,255,255,.70), rgba(255,255,255,.45));
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.cc-pill:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px rgba(0,0,0,.12);
+  background: linear-gradient(135deg, rgba(119,181,255,.35), rgba(47,109,230,.18));
+}
+.cc-pill.active{
+  background: linear-gradient(135deg, rgba(47,109,230,.40), rgba(119,181,255,.28));
+  box-shadow: 0 12px 24px rgba(47,109,230,.18);
+}
+
+/* Ensure plain buttons inside pill rows inherit style */
+.cc-pillrow button{
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+

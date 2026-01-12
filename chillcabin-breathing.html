@@ -32,7 +32,7 @@
   </style>
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
@@ -42,7 +42,10 @@
   <div class="cc-app">
     <div class="cc-topbar">
       <div class="cc-top-left">
-        <!-- Back and Home navigation icons -->
+
+
+
+
         <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -76,7 +79,7 @@
       </aside>
       <main class="cc-right">
         <div class="cc-panel" style="text-align:center;">
-          <!-- Decorative image for breathing module -->
+
           
           <div class="breathing-circle" id="breathingCircle">Start</div>
           <p id="breathingInstruction">Press start to begin a 4‑4‑4 breathing cycle.</p>
@@ -97,7 +100,10 @@
   </div>
 
   <script>
-    // Populate name
+
+
+
+
     document.addEventListener('DOMContentLoaded', function() {
       const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
@@ -111,21 +117,21 @@
       const instruction = document.getElementById('breathingInstruction');
       let phase = 0;
       clearInterval(breathInterval);
-      // Start animation cycle
+
       breathInterval = setInterval(() => {
         phase = (phase + 1) % 3;
         if (phase === 0) {
-          // Inhale
+ 
           circle.classList.remove('breathing-exhale');
           circle.classList.add('breathing-inhale');
           instruction.textContent = 'Inhale…';
         } else if (phase === 1) {
-          // Hold
+
           circle.classList.remove('breathing-inhale');
           circle.classList.remove('breathing-exhale');
           instruction.textContent = 'Hold…';
         } else {
-          // Exhale
+
           circle.classList.remove('breathing-inhale');
           circle.classList.add('breathing-exhale');
           instruction.textContent = 'Exhale…';
@@ -142,7 +148,7 @@
       instruction.textContent = 'Press start to begin a 4‑4‑4 breathing cycle.';
     }
   </script>
-  <!-- Footer with copyright and contact -->
+
   <footer class="cc-footer">
     &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>

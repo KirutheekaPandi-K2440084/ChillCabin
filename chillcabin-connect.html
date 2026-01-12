@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
 
@@ -18,7 +18,7 @@
   <div class="cc-topbar">
     <div class="cc-top-left">
       
-        <!-- Back and Home navigation icons -->
+ 
         <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -68,10 +68,13 @@
             <div class="t1">Quiet Conversations</div>
             <div class="t2">Open to gentle, low-effort chat</div>
           </div>
+		  
           <div class="cc-tile" onclick="location.href='chillcabin-chat.html'">
             <div class="t1">Entrepreneur en Route</div>
             <div class="t2">Share ideas, ask one thoughtful question</div>
           </div>
+		  
+		  
           <div class="cc-tile" onclick="location.href='chillcabin-chat.html'">
             <div class="t1">Networking Chat</div>
             <div class="t2">Exchange goals & opportunities</div>
@@ -105,5 +108,9 @@ function tab(i){
     }
   }
 </script>
+
+
+
+
 </body>
 </html>

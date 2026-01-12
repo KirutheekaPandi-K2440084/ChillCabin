@@ -4,15 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chill Cabin – Home</title>
-  <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Shared styles -->
+
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
+
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
@@ -23,7 +25,8 @@
   <div class="cc-app">
     <div class="cc-topbar">
       <div class="cc-top-left">
-        <!-- Back and Home navigation icons -->
+  
+  
         <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -60,17 +63,17 @@
         <div class="cc-panel">
           <h2 style="margin-top:0;">Select your journey phase</h2>
           <div class="cc-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
-            <!-- Pre-Flight tile -->
+   
             <div class="cc-tile cc-calm" onclick="navigate('preflight')" style="cursor:pointer;">
               <div class="t1">Pre-Flight</div>
               <div class="t2">Prepare &amp; connect</div>
             </div>
-            <!-- In-Flight tile -->
+
             <div class="cc-tile cc-curious" onclick="navigate('inflight')" style="cursor:pointer;">
               <div class="t1">In-Flight</div>
               <div class="t2">Feel, breathe &amp; be entertained</div>
             </div>
-            <!-- Post-Flight tile -->
+
             <div class="cc-tile cc-over" onclick="navigate('postflight')" style="cursor:pointer;">
               <div class="t1">Post-Flight</div>
               <div class="t2">Reflect &amp; wrap up</div>
@@ -82,7 +85,11 @@
   </div>
 
   <script>
-    // Populate name on load
+ 
+ 
+ 
+ 
+ 
     document.addEventListener('DOMContentLoaded', function() {
       const prof = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
@@ -90,13 +97,16 @@
         nameEl.textContent = prof.firstName ? prof.firstName : 'Guest';
       }
     });
+	
+	
+	
     function navigate(section) {
       if (section === 'preflight') window.location.href = 'chillcabin-preflight.html';
       if (section === 'inflight') window.location.href = 'chillcabin-inflight.html';
       if (section === 'postflight') window.location.href = 'chillcabin-postflight.html';
     }
   </script>
-  <!-- Footer with copyright and contact -->
+ 
   <footer class="cc-footer">
     &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>

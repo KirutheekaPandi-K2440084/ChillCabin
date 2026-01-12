@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chill Cabin – Pre‑Flight</title>
-  <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Shared styles -->
+
   <link rel="stylesheet" href="chillcabin-ui.css">
   <style>
-    /* Custom timeline styling for pre‑flight */
+
     .cc-timeline {
       list-style:none;
       padding:0;
@@ -32,7 +32,7 @@
       border-radius:50%;
       background:var(--accent);
     }
-    /* Simple chat styling */
+
     #chatQuestions button {
       display:block;
       width:100%;
@@ -59,7 +59,7 @@
   </style>
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
@@ -70,7 +70,7 @@
   <div class="cc-app">
     <div class="cc-topbar">
       <div class="cc-top-left">
-        <!-- Back and Home navigation icons -->
+      
         <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -104,12 +104,9 @@
       </aside>
       <main class="cc-right">
         <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
-          <!-- Decorative image for the pre-flight module -->
-          
-          <!-- Pre‑Booking Checklist -->
+  
           <h2><span role="img" aria-label="Checklist">📋</span> Pre‑Booking Checklist</h2>
-          <!-- Image next to pre-booking checklist section -->
-          
+       
           <div class="cc-setting-card">
             <label><input type="checkbox"> Check passport validity</label><br>
             <label><input type="checkbox"> Confirm flight time and date</label><br>
@@ -118,10 +115,9 @@
             <label><input type="checkbox"> Arrange transport to the airport</label><br>
           </div>
 
-          <!-- Boarding Completion Catalog & Timeline -->
+  
           <h2><span role="img" aria-label="Timeline">📅</span> Boarding Completion Catalog &amp; Timeline</h2>
-          <!-- Image next to boarding timeline section -->
-          
+      
           <div class="cc-setting-card">
             <ul class="cc-timeline">
               <li>Check‑in opens</li>
@@ -132,18 +128,17 @@
             </ul>
           </div>
 
-          <!-- Go to Gate -->
+ 
           <h2><span role="img" aria-label="Gate">🛫</span> Go to Gate</h2>
-          <!-- Image next to go to gate section -->
-          
+       
           <div class="cc-setting-card">
             <p>Check‑in completed! You can proceed to your gate.</p>
             <p><strong>Gate C06</strong> – South Wing, Heathrow Airport 🛫</p>
           </div>
 
-          <!-- Wait time calculator and activities -->
+
           <h2><span role="img" aria-label="Wait time">⏳</span> Wait time: What to do?</h2>
-          <!-- Image next to wait time section -->
+
           
           <div class="cc-setting-card">
             <p>Select an activity while you wait for boarding.</p>
@@ -155,10 +150,9 @@
             </div>
           </div>
 
-          <!-- Networking -->
+
           <h2><span role="img" aria-label="Networking">🤝</span> Networking</h2>
-          <!-- Image next to networking section -->
-          
+      
           <div class="cc-setting-card">
             <p>Meet like‑minded travellers or ask the crew a quick question.</p>
             <div style="display:flex; flex-wrap:wrap; gap:12px;">
@@ -168,20 +162,18 @@
             </div>
           </div>
 
-          <!-- Chill Chat AI -->
+
           <h2><span role="img" aria-label="AI">🤖</span> Chill Chat AI</h2>
-          <!-- Image next to Chill Chat AI section -->
-          
+        
           <div class="cc-setting-card">
             <p>Ask any question and get instant answers from our AI assistant.</p>
             <div id="chatQuestions"></div>
             <div id="chatAnswer"></div>
           </div>
 
-          <!-- Take Off Instructions & Reassurance -->
+  
           <h2><span role="img" aria-label="Take off">✈️</span> Take‑Off Instructions &amp; Reassurance</h2>
-          <!-- Image next to take-off instructions section -->
-          
+      
           <div class="cc-setting-card">
             <ul>
               <li>Buckle your seatbelt and keep it fastened whenever seated.</li>
@@ -197,7 +189,7 @@
   </div>
 
   <script>
-    // Populate profile name on load
+ 
     document.addEventListener('DOMContentLoaded', function() {
       const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
@@ -207,7 +199,6 @@
       loadQuestions();
     });
 
-    // Q/A pairs for Chill Chat AI
     const qaPairs = [
       {q:'What time should I arrive at the airport?', a:'Arrive two hours before domestic flights and three hours before international flights.'},
       {q:'How can I reduce flight anxiety?', a:'Try breathing exercises, listen to calming music and speak to the crew if you feel uneasy.'},
@@ -247,7 +238,7 @@
       ansEl.textContent = ans;
     }
   </script>
-  <!-- Footer with copyright and contact -->
+
   
           <div class="cc-setting-card" style="text-align:center; margin-top:18px;">
             <h3 style="margin:0 0 10px 0;">Continue your journey</h3>
@@ -270,6 +261,13 @@
       window.location.href = "index.html";
     }
   }
+  
+  
+  
 </script>
+
 </body>
+
+
+
 </html>

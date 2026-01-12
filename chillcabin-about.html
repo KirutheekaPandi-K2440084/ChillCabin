@@ -11,18 +11,22 @@
 <link href="chillcabin-ui.css" rel="stylesheet"/>
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
-<!-- Video background behind the app -->
+
 <video autoplay="" class="cc-bg-video" loop="" muted="" playsinline="" preload="auto">
 <source src="chillcabin-bg-video.mp4" type="video/mp4"/>
 </video>
-<!-- Corner logo for consistency -->
+
 <div class="cc-corner-logo">Chill Cabin</div>
 <div class="cc-app">
 <div class="cc-topbar">
 <div class="cc-top-left">
-<!-- Navigation icons -->
+
+
+
+
+
 <a class="cc-nav-icon" href="javascript:history.back()" title="Back">
 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M15 18l-6-6 6-6"></path>
@@ -68,7 +72,7 @@
 </div>
 </div>
 <script>
-    // Populate the profile name on load
+
     document.addEventListener('DOMContentLoaded', function() {
       const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
@@ -77,7 +81,7 @@
       }
     });
   </script>
-<!-- Footer with copyright and contact information -->
+
 <footer class="cc-footer">
     © Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>
@@ -91,6 +95,9 @@
       window.location.href = "index.html";
     }
   }
+  
+  
+  
 </script>
 </body>
 </html>

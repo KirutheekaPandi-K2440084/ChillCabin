@@ -4,20 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chill Cabin – Welcome</title>
-  <!-- Preconnect fonts for performance -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Shared UI styles -->
+
   <link rel="stylesheet" href="chillcabin-ui.css">
 
-  <!-- Additional styles for the splash animation and progress bar -->
+
   <style>
-    /* Hide all stages by default; the first will be shown inline via JS */
+
     .cc-stage { display: none; }
-    /* Progress bar container */
+
     .progress-container {
       width: 100%;
+	  
+	  
       background: rgba(255,255,255,.35);
       border: 1px solid rgba(255,255,255,.45);
       border-radius: var(--r-lg);
@@ -28,7 +31,7 @@
     .progress-bar {
       height: 100%;
       width: 0;
-      /* Shimmering gradient for a more stylish progress indicator */
+
       background: linear-gradient(135deg, var(--accent2), var(--accent));
       background-size: 200% 200%;
       animation: progressShine 2s linear infinite;
@@ -40,27 +43,35 @@
       margin-top: 12px;
     }
 
-    /* Logo pop‑in animation */
+
     .logo-animate {
       opacity: 0;
       transform: scale(0.6);
       animation: logoPop 1.8s forwards;
+	  
+	  
+	  
     }
     @keyframes logoPop {
       0% { opacity: 0; transform: scale(0.6); }
       50% { opacity: 1; transform: scale(1.1); }
+	  
+	  
+	  
+	  
       100% { opacity: 1; transform: scale(1); }
     }
 
-    /* Shimmer animation for the progress bar gradient */
+
     @keyframes progressShine {
       0% { background-position: 0% 50%; }
+	  
       50% { background-position: 100% 50%; }
+	  
       100% { background-position: 0% 50%; }
     }
 
-    /* Splash-specific overrides: hide the left panel, expand the layout, and center the device frame.
-       These styles apply only when the body has the class "splash". */
+
     body.splash .cc-left {
       display: none;
     }
@@ -68,7 +79,7 @@
       grid-template-columns: 1fr;
     }
     body.splash .cc-app {
-      /* Fill more of the viewport on the splash and remove excessive margin */
+     
       width: 98%;
       max-width: 1600px;
       margin: 1vw auto;
@@ -89,36 +100,48 @@
   </style>
 </head>
 <body class="splash">
-<!-- Restart / Refresh Button -->
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
 
-<!-- Application wrapper -->
+
 <div class="cc-app">
-  <!-- Top chrome bar to give the desktop‑app feel -->
+
   <div class="cc-topbar">
     <div class="cc-top-left">
-      <!-- Back and Home navigation icons -->
+
       <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
+	  
+	  
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 18l-6-6 6-6"/>
         </svg>
+		
+		
+		
+		
+		
+		
+		
       </a>
 <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
       <div class="cc-title">
+	  
         <img src="chillcabin-logo.png" alt="Chill Cabin logo">
         Chill Cabin
       </div>
     </div>
-    <!-- Decorative icons to mirror a real app window; no functionality needed -->
+  
     <div class="cc-top-icons">◦ ◦ ◦</div>
   </div>
 
-  <!-- Two‑column body: left panel for introduction, right panel for the splash action -->
+
   <div class="cc-body">
+  
     <aside class="cc-left">
       <div class="cc-kicker">Welcome aboard</div>
       <h1>Chill Cabin</h1>
+	  
       <p>
         A calm experience begins here. Before we start, we’d like to send gentle
         reminders and cache content offline to support your wellbeing.
@@ -126,11 +149,15 @@
     </aside>
 
     <main class="cc-right">
-      <!-- Wrap the stages in a device frame to evoke an iPad bezel -->
+
       <div class="device-frame">
-        <!-- Stage 1: Large logo with simple intro and a pop‑in animation -->
+
+
+
         <div id="stage1" class="cc-panel cc-stage" style="display:block; text-align:center; padding-top:60px; padding-bottom:60px;">
-          <!-- Make the splash logo even larger for a dramatic pop effect -->
+       
+	   
+	   
           <img src="chillcabin-logo.png" alt="Chill Cabin logo" class="logo-animate" style="width:400px; height:400px; object-fit:contain; margin-bottom:40px; filter: drop-shadow(0 24px 48px rgba(0,0,0,.32));">
           <div style="font-weight:900; font-size:28px; color: rgba(10,30,48,.88);">Chill Cabin</div>
           <p style="max-width:420px; margin:14px auto 0; color: rgba(10,30,48,.60); font-weight:600; line-height:1.4;">
@@ -138,7 +165,7 @@
           </p>
         </div>
 
-        <!-- Stage 2: Progress bar showing loading state -->
+    
         <div id="stage2" class="cc-panel cc-stage" style="text-align:center; padding-top:60px; padding-bottom:60px;">
           <div style="font-weight:900; font-size:22px; color: rgba(10,30,48,.88); margin-bottom:16px;">
             Setting up your calm space
@@ -149,9 +176,12 @@
           <div class="progress-text">Loading your experience…</div>
         </div>
 
-        <!-- Stage 3: Ask for notifications and caching permission -->
+
+
+
         <div id="stage3" class="cc-panel cc-stage" style="text-align:center; padding-top:48px; padding-bottom:48px;">
-          <!-- Smaller logo for final prompt (larger than before for better visibility) -->
+     
+	 
           <img src="chillcabin-logo.png" alt="Chill Cabin logo" style="width:280px; height:280px; object-fit:contain; margin-bottom:32px; filter: drop-shadow(0 20px 40px rgba(0,0,0,.30));">
           <div style="font-weight:900; font-size:22px; margin-bottom:8px; color: rgba(10,30,48,.88);">
             Allow calm notifications & caching?
@@ -169,56 +199,64 @@
   </div>
 </div>
 
-<!-- Simple script to handle the user’s choice and request permission -->
+
 <script>
-  // Splash screen sequencing logic
+
   window.addEventListener('DOMContentLoaded', function () {
     const stage1 = document.getElementById('stage1');
     const stage2 = document.getElementById('stage2');
     const stage3 = document.getElementById('stage3');
     const progressBar = document.getElementById('progress-bar');
 
-    // After a delay, move from stage1 (logo) to stage2 (progress bar)
+
+
     setTimeout(() => {
       stage1.style.display = 'none';
       stage2.style.display = 'block';
 
-      // Animate the progress bar. Each step increments width by 1% every 30ms (~3s total)
+    
+	
       let progress = 0;
       const interval = setInterval(() => {
         progress += 1;
         progressBar.style.width = progress + '%';
         if (progress >= 100) {
           clearInterval(interval);
-          // After brief pause, show the notification ask stage
+
+
           setTimeout(() => {
             stage2.style.display = 'none';
             stage3.style.display = 'block';
           }, 350);
         }
       }, 30);
-    }, 2500); // show the large logo for ~2.5s before starting progress
-
-    // Hook up allow/deny buttons once the DOM is ready
+    }, 2500); 
+  
+  
+  
     const allowButton = document.getElementById('btnAllow');
     const denyButton = document.getElementById('btnDeny');
     allowButton.addEventListener('click', () => {
       if ('Notification' in window) {
         Notification.requestPermission().finally(() => {
           localStorage.setItem('cc_notifications', 'allowed');
-          // After granting permission, direct the user to the role selection page rather than onboarding.
-          // This aligns with the new flow where users pick their role before any onboarding activities.
+          
           window.location.href = 'chillcabin-role.html';
+		  
         });
       } else {
+	  
         localStorage.setItem('cc_notifications', 'allowed');
-        // Without the notifications API, still send the user to the role selection page.
+       
+	   
+	   
         window.location.href = 'chillcabin-role.html';
       }
     });
     denyButton.addEventListener('click', () => {
       localStorage.setItem('cc_notifications', 'denied');
-      // On denying notifications, go to role selection page.
+   
+   
       window.location.href = 'chillcabin-role.html';
     });
   });
@@ -227,13 +265,22 @@
 
 <script>
   function restartApp() {
+  
     const ok = confirm("Restart Chill Cabin from the beginning? Your session data will be cleared.");
     if (ok) {
+	
       localStorage.clear();
       sessionStorage.clear();
+	  
       window.location.href = "index.html";
     }
+	
   }
+  
+  
 </script>
+
+
 </body>
+
 </html>

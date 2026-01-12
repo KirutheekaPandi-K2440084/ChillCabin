@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
-<!-- Fixed navigation (always visible) -->
+
+
 <div class="cc-fixed-nav" aria-label="Navigation">
   <div class="cc-nav-icon" onclick="history.back()" title="Back" aria-label="Back">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 19.5L8 12l7.5-7.5 1.4 1.4L10.8 12l6.1 6.1-1.4 1.4z"/></svg>
@@ -20,15 +21,18 @@
   </a>
 </div>
 
-<!-- Restart / Refresh Button -->
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">
   🔄 Restart
 </button>
 
-  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+
+
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
+	
   </video>
+  
   <div class="cc-corner-logo">Chill Cabin</div>
 
   <div class="cc-app">
@@ -99,7 +103,7 @@
   }
 </script>
 
-<!-- Populate profile name for onboarding -->
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const prof = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');

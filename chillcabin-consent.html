@@ -10,21 +10,23 @@
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
-  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
   </video>
 
-  <!-- Corner logo for consistent branding -->
   <div class="cc-corner-logo">Chill Cabin</div>
 
 <div class="cc-app">
     <div class="cc-topbar">
     <div class="cc-top-left">
-      <!-- Back and Home navigation icons -->
+ 
+ 
+ 
       <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 18l-6-6 6-6"/>
@@ -60,7 +62,7 @@
 
     <main class="cc-right">
       <div class="cc-panel">
-        <!-- Decorative image for consent page -->
+   
         
         <div style="font-weight:900; font-size:20px; margin-bottom:12px;">Data Privacy Dashboard</div>
 
@@ -98,7 +100,7 @@
 </div>
 
   <script>
-    // Populate name in profile chip for consent page
+
     document.addEventListener('DOMContentLoaded', function() {
       const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
@@ -108,7 +110,7 @@
     });
   </script>
 
-  <!-- Footer with copyright and contact information -->
+
   <footer class="cc-footer">
     &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>

@@ -14,13 +14,6 @@
   --gold:#eac67a;
 }
 
-/*
-  Navigation icons for back/home actions
-  These circular buttons appear in the top bar and use the same accent
-  gradient as our primary buttons. A slight shadow and hover translation
-  give them a tactile feel. The embedded SVG icons inherit the current
-  colour so they remain visible on the gradient.
-*/
 .cc-nav-icon {
   display: inline-flex;
   align-items: center;
@@ -37,20 +30,22 @@
   margin-right: 10px;
   text-decoration: none;
 }
+
+
+
 .cc-nav-icon:hover {
   transform: translateY(-2px);
 }
+
+
+
 .cc-nav-icon svg {
   width: 18px;
   height: 18px;
   stroke: currentColor;
 }
 
-/* Footer at the bottom of each page
-   Provides copyright and contact information. A subtle border and
-   translucent background separate it from the main content without
-   overpowering the layout. Links inside the footer inherit the
-   accent colour for emphasis.*/
+
 .cc-footer {
   text-align: center;
   font-size: 14px;
@@ -64,18 +59,14 @@
   text-decoration: underline;
 }
 
-/* Gradient text styling for headings
-   Apply a soft gradient across h1 and h2 elements in our layout. This
-   effect uses background-clip to fill the text with a gradient and
-   ensures that text remains crisp on high DPI screens. */
+
 .cc-left h1, .cc-panel h2 {
   background: linear-gradient(135deg, var(--accent), var(--gold));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Optional images adjacent to sections can reuse this class
-   It constrains width, rounds corners and adds gentle spacing. */
+
 .cc-section-img {
   max-width: 100%;
   border-radius: 16px;
@@ -90,22 +81,16 @@ body{
   font-family: Poppins, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   color: var(--ink);
 
-  /* Futuristic calming cabin background with translucent overlay for readability */
+
   background:
     linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0.15)),
-    url("futuristic-cabin-bg.png");
+    url("background_cabin.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
-/*
-  Video background element. This sits fixed behind the app content and plays
-  silently on a loop. It uses object-fit: cover so it fills the viewport
-  without distortion. pointer-events: none ensures the video doesn’t
-  intercept scroll or click events. A negative z-index places it behind
-  everything else. We hide the video for splash pages via body.splash below.
-*/
+
 .cc-bg-video{
   position: fixed;
   top: 0;
@@ -117,18 +102,14 @@ body{
   pointer-events: none;
 }
 
-/* Hide the video on splash screens so the static background shows instead */
+
 body.splash .cc-bg-video{
   display: none;
 }
 
-/* App frame */
-/*
-  App container: adapt width to fill more of the viewport on large screens. We allow up to 1280px
-  but default to 90% of the viewport width with a small margin. Rounded corners and backdrop keep the luxury feel.
-*/
+
 .cc-app{
-  /* Increase the default width and reduce margins so the app frame fills more of the viewport on larger screens */
+ 
   max-width: 1500px;
   width: 96%;
   margin: 1.5vw auto;
@@ -140,7 +121,7 @@ body.splash .cc-bg-video{
   backdrop-filter: blur(16px);
 }
 
-/* Top chrome bar */
+
 .cc-topbar{
   height:56px;
   display:flex;
@@ -172,20 +153,21 @@ body.splash .cc-bg-video{
 }
 
 .cc-title img{
-  /* Use the new cabin logo and set a larger size so the logo pops more */
+
   width:60px;
   height:60px;
   object-fit:contain;
   filter: drop-shadow(0 8px 16px rgba(0,0,0,.25));
 }
 
-/* Make the text in the title larger to complement the bigger logo */
-/* Further enlarge the brand text for more prominence */
+
+
+
 .cc-title{
   font-size: 28px;
 }
 
-/* Corner logo: persistent brand marker on all screens */
+
 .cc-corner-logo{
   position: fixed;
   bottom: 20px;
@@ -214,14 +196,14 @@ body.splash .cc-bg-video{
   font-weight:700;
 }
 
-/* Container for the right side of the top bar (profile/account) */
+
 .cc-top-right{
   display:flex;
   align-items:center;
   gap:12px;
 }
 
-/* Profile chip in the top bar */
+
 .cc-profile{
   display:flex;
   align-items:center;
@@ -237,7 +219,7 @@ body.splash .cc-bg-video{
   background: rgba(255,255,255,0.35);
 }
 
-/* Avatar in the profile chip */
+
 .cc-profile img{
   width:32px;
   height:32px;
@@ -245,7 +227,7 @@ body.splash .cc-bg-video{
   object-fit:cover;
 }
 
-/* Name text in the profile chip */
+
 .cc-profile-name{
   font-size:16px;
   font-weight:500;
@@ -258,7 +240,7 @@ body.splash .cc-bg-video{
   min-height: 680px;
 }
 
-/* Left text panel */
+
 .cc-left{
   padding: 34px 28px;
   background:
@@ -286,13 +268,12 @@ body.splash .cc-bg-video{
   line-height:1.45;
 }
 
-/* Right module area */
 .cc-right{
   padding: 24px;
   position:relative;
 }
 
-/* Shine overlay */
+
 .cc-right::before{
   content:"";
   position:absolute;
@@ -328,7 +309,7 @@ body.splash .cc-bg-video{
   gap:16px;
 }
 
-/* Side navigation */
+
 .cc-nav{
   display:flex;
   flex-direction:column;
@@ -350,7 +331,6 @@ body.splash .cc-bg-video{
   color: rgba(10,30,48,.88);
 }
 
-/* Mood tiles grid */
 .cc-grid{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
@@ -411,10 +391,7 @@ body.splash .cc-bg-video{
   border-color: rgba(234,198,122,.4);
 }
 
-/*
-  Responsive layout adjustments for laptop, iPad, and iPhone
-  On narrower screens we reduce margins, collapse columns, and remove rounded corners for a full‑width experience.
-*/
+
 @media (max-width: 1024px) {
   .cc-app {
     margin: 12px;
@@ -446,13 +423,9 @@ body.splash .cc-bg-video{
   }
 }
 
-/*
-  Device frame: use this wrapper around modules to simulate an iPad border.
-  It provides a thicker border and a subtle shadow to evoke a tablet bezel.
-*/
+
 .device-frame {
-  /* Thicker bezel and larger radius to better evoke a tablet device.
-     The lighter border colour adds contrast on dark backgrounds. */
+
   padding: 24px;
   border: 12px solid rgba(0,0,0,0.18);
   border-radius: 36px;
@@ -551,7 +524,6 @@ body.splash .cc-bg-video{
   color: rgba(10,30,48,.88);
 }
 
-/* ----- Profile Settings styles ----- */
 .cc-settings-section {
   margin-bottom: 28px;
 }
@@ -563,14 +535,14 @@ body.splash .cc-bg-video{
   color: rgba(10,30,48,.85);
 }
 
-/* Profile settings list items: stack label and control vertically for better responsiveness */
+
 .cc-setting-item {
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
 }
 
-/* Horizontal layout for toggle items (checkbox rows). These items keep the label and checkbox on one line. */
+
 .cc-setting-item.toggle {
   flex-direction: row;
   align-items: center;
@@ -582,7 +554,7 @@ body.splash .cc-bg-video{
   margin-bottom: 0;
 }
 .cc-setting-item.toggle input[type="checkbox"] {
-  /* Let checkbox take only the space it needs */
+
   width: auto;
 }
 
@@ -594,14 +566,12 @@ body.splash .cc-bg-video{
 
 .cc-setting-item input[type="range"],
   .cc-setting-item select {
-  /* Allow range and select to flex naturally in vertical layout */
+
   flex-shrink: 0;
   width: 100%;
   margin-left: 0;
 }
 
-/* For settings lists, make controls expand the full width for consistency */
-/* Make range and select elements stretch to the container width */
 .cc-setting-item input[type="range"],
 .cc-setting-item select {
   width: 100%;
@@ -609,7 +579,7 @@ body.splash .cc-bg-video{
 }
 
 .cc-setting-item input[type="range"] {
-  /* Restyle the slider to better match the aesthetic */
+
   -webkit-appearance: none;
   height: 4px;
   border-radius: 2px;
@@ -617,7 +587,12 @@ body.splash .cc-bg-video{
   outline: none;
 }
 
-/* Custom thumb for range slider */
+
+
+
+
+
+
 .cc-setting-item input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -667,7 +642,7 @@ body.splash .cc-bg-video{
   box-shadow: 0 2px 6px rgba(0,0,0,.20);
 }
 
-/* Style the select dropdowns to align with glassy aesthetic */
+
 .cc-setting-item select {
   padding: 6px 8px;
   border-radius: 8px;
@@ -689,7 +664,7 @@ body.splash .cc-bg-video{
 
 .cc-setting-item input[type="checkbox"] {
   transform: scale(1.2);
-  /* No extra left margin when laid out in grid */
+
   margin-left: 0;
 }
 
@@ -703,13 +678,13 @@ body.splash .cc-bg-video{
 }
 
 
-/* Footer emphasis */
+
 .cc-footer{
   font-size: 16px !important;
   font-weight: 700 !important;
   font-style: italic !important;
 }
-/* Transparent emoji icon (replaces repeated section thumbnails) */
+
 .cc-emoji-icon{
   display:inline-flex;
   align-items:center;
@@ -720,7 +695,6 @@ body.splash .cc-bg-video{
 }
 
 
-/* Restart / Refresh floating button */
 .cc-restart-btn{
   position: fixed;
   top: 12px;
@@ -743,7 +717,6 @@ body.splash .cc-bg-video{
   box-shadow: 0 14px 28px rgba(0,0,0,.22);
 }
 
-/* Make pill buttons more colourful + shiny */
 .cc-pill{
   background: linear-gradient(135deg, rgba(255,255,255,.70), rgba(255,255,255,.45));
   box-shadow: 0 8px 18px rgba(0,0,0,.08);
@@ -759,11 +732,10 @@ body.splash .cc-bg-video{
   box-shadow: 0 12px 24px rgba(47,109,230,.18);
 }
 
-/* Ensure plain buttons inside pill rows inherit style */
+
 .cc-pillrow button{
   all: unset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-

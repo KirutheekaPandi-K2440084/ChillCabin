@@ -10,20 +10,20 @@
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
-  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
   </video>
-  <!-- Corner brand mark -->
+
   <div class="cc-corner-logo">Chill Cabin</div>
 
 <div class="cc-app">
     <div class="cc-topbar">
     <div class="cc-top-left">
-        <!-- Back and Home navigation icons -->
+
         <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -72,7 +72,7 @@
             We’ll guide a gentle, grounding conversation.
           </div>
 
-          <!-- Dynamic chat box: messages will be appended here -->
+
           <div id="chatBox" class="cc-chat" style="max-height:220px; overflow-y:auto;"></div>
 
           <div style="display:flex; gap:10px; margin-top:12px;">
@@ -91,24 +91,18 @@
 </div>
 
   <script>
-    // Update profile name on chat pages and initialise the chat
+
     document.addEventListener('DOMContentLoaded', function() {
       const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
       if (nameEl) {
         nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
       }
-      // Initialise chat with welcome messages
+
       initChat();
     });
 
-    /*
-      Dynamic chat implementation
-      Users can type a message and the assistant will respond with a random
-      supportive phrase from a large set of predefined responses. The chat
-      messages are appended to the chatBox element and scrolled to the bottom.
-    */
-    // Predefined set of supportive responses (50+)
+  
     const chatResponses = [
       "I'm here with you. Take a deep breath.",
       "You're doing great – keep it up!",
@@ -162,7 +156,7 @@
       "You’ve got this. I’m with you all the way."
     ];
 
-    // Initialise chat with a system greeting
+ 
     function initChat() {
       const chatBox = document.getElementById('chatBox');
       if (chatBox) {
@@ -172,7 +166,7 @@
       }
     }
 
-    // Append a user message to the chat
+
     function appendUserMessage(msg) {
       const chatBox = document.getElementById('chatBox');
       const bubble = document.createElement('div');
@@ -182,7 +176,7 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // Append a system message
+
     function appendSystemMessage(msg) {
       const chatBox = document.getElementById('chatBox');
       const bubble = document.createElement('div');
@@ -192,23 +186,22 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // Handle sending a message
     function sendMessage() {
       const input = document.getElementById('chatInput');
       const text = input.value.trim();
       if (!text) return;
       appendUserMessage(text);
       input.value = '';
-      // Pick a random response
+
       const resp = chatResponses[Math.floor(Math.random() * chatResponses.length)];
-      // Simulate brief delay before responding
+
       setTimeout(() => {
         appendSystemMessage(resp);
       }, 400);
     }
   </script>
 
-  <!-- Footer with copyright and contact information -->
+
   <footer class="cc-footer">
     &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>

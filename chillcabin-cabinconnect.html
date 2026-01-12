@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
-  <!-- Video background: plays behind the app. Hidden on splash screen via CSS. -->
+
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
   </video>
@@ -21,7 +22,7 @@
 <div class="cc-app">
     <div class="cc-topbar">
     <div class="cc-top-left">
-      <!-- Back and Home navigation icons -->
+
       <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 18l-6-6 6-6"/>
@@ -78,7 +79,7 @@
 
           <div class="cc-callout" style="background:
               linear-gradient(135deg, rgba(255,255,255,.60), rgba(255,255,255,.22)),
-              url('3f933026-910c-4f69-92be-7cf5dfabab21.png');
+              url('Image01.png');
               background-size:cover; background-position:center;">
             <div style="font-weight:900; font-size:18px; margin-bottom:8px;">Connected & Synced</div>
             <div style="color:rgba(10,30,48,.70); font-weight:700; line-height:1.55;">
@@ -113,7 +114,7 @@
 </div>
 
   <script>
-    // Populate profile name from local storage if available
+
     document.addEventListener('DOMContentLoaded', function() {
       const prof = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
@@ -123,7 +124,6 @@
     });
   </script>
 
-  <!-- Footer with copyright and contact -->
   <footer class="cc-footer">
     &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>
@@ -139,6 +139,12 @@
       window.location.href = "index.html";
     }
   }
+  
+  
+  
+  
+  
+  
 </script>
 </body>
 </html>

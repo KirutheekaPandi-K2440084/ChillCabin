@@ -10,7 +10,10 @@
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
+
+
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
@@ -20,7 +23,8 @@
   <div class="cc-app">
     <div class="cc-topbar">
       <div class="cc-top-left">
-        <!-- Back and Home navigation icons -->
+
+
         <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -54,20 +58,18 @@
       </aside>
       <main class="cc-right">
         <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
-          <!-- Decorative image for the post-flight module -->
-          
-          <!-- Ready to land -->
+         
+ 
           <h2><span role="img" aria-label="Landing">🛬</span> Ready to land</h2>
-          <!-- Image next to the Ready to land section -->
           
           <div class="cc-setting-card">
             <p>Your aircraft is descending and preparing for landing. Expected touchdown speed: 155 knots.</p>
             <p><strong>Expected landing:</strong> Smooth 🛬</p>
           </div>
 
-          <!-- Mood check after flight -->
+          
           <h2><span role="img" aria-label="Feeling">🙂</span> How are you feeling now?</h2>
-          <!-- Image next to mood check section -->
+ 
           
           <div class="cc-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px;">
             <div class="cc-tile cc-calm" onclick="selectMood('Calm')"><div class="t1">Calm</div><div class="t2">At ease</div></div>
@@ -77,9 +79,9 @@
             <div class="cc-tile cc-over" onclick="selectMood('Relieved')"><div class="t1">Relieved</div><div class="t2">Glad it’s over</div></div>
           </div>
 
-          <!-- ChillChat summary survey -->
+         
           <h2><span role="img" aria-label="Summary">💬</span> ChillChat journey summary</h2>
-          <!-- Image next to ChillChat summary section -->
+
           
           <div class="cc-setting-card">
             <p>We’d love to hear about your flight. Tap on a question to see our thoughts.</p>
@@ -87,22 +89,27 @@
             <div id="surveyAnswer"></div>
           </div>
 
-          <!-- Landing checklist -->
+         
+		 
+		 
           <h2><span role="img" aria-label="Checklist">📋</span> Landing checklist &amp; instructions</h2>
-          <!-- Image next to landing checklist section -->
+     
+	 
+	 
+	 
           
           <div class="cc-setting-card">
             <ul>
               <li>Remain seated until the seatbelt sign is switched off.</li>
               <li>Collect all personal belongings from under the seat and overhead bins.</li>
               <li>Follow signs to immigration and baggage claim.</li>
-              <li>Have your passport and documentation ready for inspection.</li>
+              <li>Have your passport and documentation ready for inspection..</li>
             </ul>
           </div>
 
-          <!-- Visa and baggage info -->
+    
           <h2><span role="img" aria-label="Baggage">🛄</span> Visa fast track &amp; baggage collection</h2>
-          <!-- Image next to visa and baggage section -->
+    
           
           <div class="cc-setting-card">
             <ul>
@@ -112,9 +119,9 @@
             </ul>
           </div>
 
-          <!-- Message to loved ones -->
+
           <h2><span role="img" aria-label="Message">💌</span> Message to loved ones</h2>
-          <!-- Image next to message section -->
+ 
           
           <div class="cc-setting-card">
             <p>Let someone know you’ve landed safely.</p>
@@ -136,7 +143,6 @@
             </div>
           </div>
 
-          <!-- Thank you -->
           <h2><span role="img" aria-label="Thank you">🙏</span> Thank you &amp; fly again</h2>
           <div class="cc-setting-card" style="text-align:center;">
             <p>Thank you for flying with Chill Cabin.</p>
@@ -157,7 +163,7 @@
       localStorage.setItem('cc_postflightMood', mood);
       alert('Thanks for sharing how you feel: ' + mood);
     }
-    // Survey Q/A for summary
+
     const survey = [
       {q:'How was your overall experience?', a:'We hope your journey was calming and supportive. We’d love your feedback to improve.'},
       {q:'Would you recommend Chill Cabin?', a:'Your recommendation helps us grow. Thank you for trusting us on your trip.'},
@@ -194,7 +200,7 @@
       alert('Your message has been sent to ' + number + ':\n"' + msg + '"');
     }
   </script>
-  <!-- Footer with copyright and contact -->
+
   <footer class="cc-footer">
     &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>

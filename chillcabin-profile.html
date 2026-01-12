@@ -4,28 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chill Cabin – Profile Settings</title>
-  <!-- Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Shared UI styles -->
+
   <link rel="stylesheet" href="chillcabin-ui.css">
 </head>
 <body>
-<!-- Restart / Refresh Button -->
+
 <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
-  <!-- Background video just like other modules -->
+
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
   </video>
-  <!-- Persistent corner brand mark -->
+
   <div class="cc-corner-logo">Chill Cabin</div>
 
   <div class="cc-app">
     <div class="cc-topbar">
       <div class="cc-top-left">
-        <!-- Back and Home navigation icons -->
+    
         <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -47,18 +47,18 @@
     </div>
 
     <div class="cc-body">
-      <!-- Left panel: description -->
+
       <aside class="cc-left">
         <div class="cc-kicker">Profile &amp; Accessibility</div>
         <h1>Your preferences</h1>
         <p>Update your personal details and accessibility settings here. These preferences are stored locally and help tailor your Chill Cabin experience.</p>
       </aside>
 
-      <!-- Right panel: settings form -->
+
       <main class="cc-right">
         <div class="cc-panel" style="overflow-y:auto; max-height:600px;">
           <h2 style="margin-top:0;">Profile Setting</h2>
-          <!-- Section 1: Profile Dashboard -->
+
           <div class="cc-settings-section">
             <h3>1. Profile Dashboard</h3>
             <div class="cc-setting-card">
@@ -67,7 +67,7 @@
             </div>
           </div>
 
-          <!-- Section 2: Accessibility -->
+
           <div class="cc-settings-section">
             <h3>2. Accessibility</h3>
             <div class="cc-setting-card">
@@ -75,7 +75,7 @@
                 <label for="prefTextSizeRange">Text size</label>
                 <input type="range" id="prefTextSizeRange" min="1" max="2" step="0.1">
               </div>
-              <!-- Boolean accessibility options rendered in a table for neat alignment -->
+             
               <table class="cc-settings-table">
                 <tr>
                   <td>Screen reader prompts</td>
@@ -105,7 +105,7 @@
             </div>
           </div>
 
-          <!-- Section 3: Mode -->
+
           <div class="cc-settings-section">
             <h3>3. Mode</h3>
             <div class="cc-setting-card">
@@ -129,7 +129,7 @@
                 <label for="prefSaturationRange">Saturation</label>
                 <input type="range" id="prefSaturationRange" min="0" max="100" step="5">
               </div>
-              <!-- Boolean mode options rendered in a table -->
+     
               <table class="cc-settings-table">
                 <tr>
                   <td>Monochrome</td>
@@ -143,7 +143,7 @@
             </div>
           </div>
 
-          <!-- Section 4: Keyboard Navigation -->
+ 
           <div class="cc-settings-section">
             <h3>4. Keyboard Navigation [Motor]</h3>
             <div class="cc-setting-card">
@@ -166,36 +166,45 @@
   </div>
 
   <script>
-    // Populate profile name and account summary on load
+ 
     document.addEventListener('DOMContentLoaded', function() {
       const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
+	  
+	  
       const nameEl = document.getElementById('ccProfileName');
       if (nameEl) {
         nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
+		
+		
       }
-      // Show account summary
+
+
       const summaryEl = document.getElementById('cc-account-summary');
       if (profile.firstName) {
+	  
+	  
         summaryEl.textContent = `${profile.firstName} ${profile.surname} — Flight ${profile.flight}, Boarding pass ${profile.boardingPass}, Date ${profile.flightDate}`;
       } else {
+	  
         summaryEl.textContent = 'You are not signed in yet.';
       }
-      // Load preferences
+
       const prefs = JSON.parse(localStorage.getItem('cc_userPrefs') || '{}');
-      // Apply saved preferences to inputs
-      // Text size (range from 1-2, default 1)
+ 
       const textSizeRange = document.getElementById('prefTextSizeRange');
       if (textSizeRange) {
         textSizeRange.value = prefs.textSize || 1;
       }
-      // Set checkboxes for accessibility features
+
+
       document.getElementById('prefScreenReader').checked = !!prefs.screenReader;
       document.getElementById('prefAudioAssist').checked = !!prefs.audioAssist;
       document.getElementById('prefSeizureSafe').checked = !!prefs.seizureSafe;
+	  
       document.getElementById('prefVision').checked = !!prefs.visionImpaired;
       document.getElementById('prefADHD').checked = !!prefs.adhdFriendly;
       document.getElementById('prefCognitive').checked = !!prefs.cognitive;
-      // Mode settings
+
       document.getElementById('prefColorScheme').value = prefs.colorScheme || 'default';
       document.getElementById('prefContrast').value = prefs.contrast || 'normal';
       const satRange = document.getElementById('prefSaturationRange');
@@ -204,12 +213,17 @@
       }
       document.getElementById('prefMonochrome').checked = !!prefs.monochrome;
       document.getElementById('prefLowSat').checked = !!prefs.lowSaturation;
-      // Keyboard navigation
+
       document.getElementById('prefKeyboardNav').checked = !!prefs.keyboardNav;
     });
 
+
+
     function savePreferences() {
+	
       const prefs = {
+	  
+	  
         textSize: parseFloat(document.getElementById('prefTextSizeRange').value || 1),
         screenReader: document.getElementById('prefScreenReader').checked,
         audioAssist: document.getElementById('prefAudioAssist').checked,
@@ -226,23 +240,32 @@
       };
       localStorage.setItem('cc_userPrefs', JSON.stringify(prefs));
       alert('Preferences saved successfully!');
-      // After saving preferences, navigate to the home landing page
+  
       window.location.href = 'chillcabin-home.html';
     }
 
+
+
     function clearSession() {
-      // Clear stored user and prefs
+
       localStorage.removeItem('cc_userProfile');
       localStorage.removeItem('cc_userPrefs');
       alert('Session cleared. Returning to role selection.');
       window.location.href = 'chillcabin-role.html';
     }
   </script>
-  <!-- Footer with copyright and contact -->
+
+
+
   <footer class="cc-footer">
     &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>
   </footer>
+
+
+
+
+
 
 <script>
   function restartApp() {

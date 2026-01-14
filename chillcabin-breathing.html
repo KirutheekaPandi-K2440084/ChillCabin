@@ -4,48 +4,118 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chill Cabin – Breathing Guide</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="chillcabin-ui.css">
+
   <style>
-    .breathing-circle {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.4);
+    /* --- Breathing UI (Upgraded) --- */
+    .cc-breathing-status{
       display:flex;
       align-items:center;
       justify-content:center;
-      margin: 20px auto;
-      font-size:24px;
+      gap:12px;
+      margin-top:10px;
+      margin-bottom:10px;
+      font-weight:600;
+      color: var(--ink);
+    }
+
+    .cc-active-dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background:#9aa6b2; /* inactive grey */
+      box-shadow:none;
+    }
+    .cc-active-dot.active{
+      background:#2ecc71; /* green */
+      box-shadow:0 0 10px rgba(46,204,113,.6);
+    }
+
+    .cc-active-text{
       font-weight:700;
+      opacity:.95;
+    }
+
+    .cc-timer{
+      margin-left:auto;
+      font-variant-numeric: tabular-nums;
+      opacity:.9;
+    }
+
+    .breathing-ring{
+      width:190px;
+      height:190px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin: 18px auto 6px auto;
+      /* progress ring */
+      background: conic-gradient(rgba(70,120,255,.9) var(--p, 0%), rgba(255,255,255,.15) 0);
+      padding:10px;
+      transition: background 150ms linear;
+    }
+
+    .breathing-circle{
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      background: rgba(255,255,255,0.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      font-weight:800;
       color: var(--ink);
       transition: transform 4s ease-in-out;
+      text-align:center;
+      padding:10px;
     }
-    .breathing-inhale {
-      transform: scale(1.3);
+
+    .breathing-inhale{ transform: scale(1.28); }
+    .breathing-exhale{ transform: scale(0.82); }
+
+    .cc-countdown{
+      margin: 6px 0 14px 0;
+      font-weight:700;
+      opacity:.85;
     }
-    .breathing-exhale {
-      transform: scale(0.8);
+
+    .cc-breathing-controls{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    /* Mobile: keep it neat */
+    @media (max-width: 820px){
+      .cc-body{ flex-direction: column; }
+      .cc-left{ width:100%; }
+      .cc-right{ width:100%; }
+      .cc-panel{ padding:18px !important; }
+      .breathing-ring{ transform: scale(.95); }
     }
   </style>
 </head>
-<body>
 
-<button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
+<body>
+  <!-- Restart / Refresh Button -->
+  <button class="cc-restart-btn" onclick="restartApp()" title="Restart from beginning">🔄</button>
 
   <video autoplay loop muted playsinline preload="auto" class="cc-bg-video">
     <source src="chillcabin-bg-video.mp4" type="video/mp4">
   </video>
+
   <div class="cc-corner-logo">Chill Cabin</div>
+
   <div class="cc-app">
     <div class="cc-topbar">
       <div class="cc-top-left">
-
-
-
-
+        <!-- Back and Home navigation icons -->
         <a href="javascript:history.back()" class="cc-nav-icon" title="Back">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 18l-6-6 6-6"/>
@@ -60,6 +130,7 @@
         <span class="cc-dot"></span><span class="cc-dot"></span><span class="cc-dot"></span>
         <div class="cc-title"><img src="chillcabin-logo.png" alt="">Chill Cabin</div>
       </div>
+
       <div class="cc-top-right">
         <div class="cc-top-icons">◦ ◦ ◦</div>
         <a class="cc-profile" href="chillcabin-profile.html">
@@ -71,27 +142,48 @@
         </a>
       </div>
     </div>
+
     <div class="cc-body">
       <aside class="cc-left">
         <div class="cc-kicker">Breathing</div>
         <h1><span role="img" aria-label="Breathing">🧘</span> Guided breathing</h1>
         <p>Slow down and centre yourself with this simple breathing exercise. Follow the animation or read the instructions to calm your mind and body.</p>
       </aside>
+
       <main class="cc-right">
         <div class="cc-panel" style="text-align:center;">
 
-          
-          <div class="breathing-circle" id="breathingCircle">Start</div>
-          <p id="breathingInstruction">Press start to begin a 4‑4‑4 breathing cycle.</p>
-          <button class="cc-btn primary" onclick="startBreathing()">Start</button>
-          <button class="cc-btn" onclick="resetBreathing()">Reset</button>
+          <!-- Status row -->
+          <div class="cc-breathing-status" aria-label="Breathing status">
+            <span class="cc-active-dot" id="activeDot" aria-hidden="true"></span>
+            <span class="cc-active-text" id="activeText">Inactive</span>
+            <span class="cc-timer" id="timerText" aria-label="Session timer">00:00</span>
+          </div>
+
+          <!-- Progress ring + phase text -->
+          <div class="breathing-ring" id="breathingRing" aria-hidden="true">
+            <div class="breathing-circle" id="breathingCircle" role="status" aria-live="polite">Start</div>
+          </div>
+
+          <p id="breathingInstruction" aria-live="polite">
+            Press start to begin a 4-4-4 breathing cycle.
+          </p>
+
+          <p class="cc-countdown" id="countdownText" aria-label="Phase countdown">4s</p>
+
+          <div class="cc-breathing-controls">
+            <button class="cc-btn primary" id="startBtn" onclick="startBreathing()" aria-label="Start breathing exercise">Start</button>
+            <button class="cc-btn" id="pauseBtn" onclick="togglePause()" aria-label="Pause breathing exercise" disabled>Pause</button>
+            <button class="cc-btn" id="resetBtn" onclick="resetBreathing()" aria-label="Reset breathing exercise">Reset</button>
+          </div>
+
           <div style="margin-top:24px; text-align:left;">
             <h2>How it works</h2>
             <ul>
               <li>Inhale gently through your nose for 4 seconds.</li>
               <li>Hold your breath for 4 seconds.</li>
               <li>Exhale slowly through your mouth for 4 seconds.</li>
-              <li>Repeat as many times as you like. This 4‑4‑4 rhythm helps regulate breathing and reduce tension.</li>
+              <li>Repeat as many times as you like. This 4-4-4 rhythm helps regulate breathing and reduce tension.</li>
             </ul>
           </div>
         </div>
@@ -100,69 +192,241 @@
   </div>
 
   <script>
-
-
-
-
+    // Populate name
     document.addEventListener('DOMContentLoaded', function() {
       const profile = JSON.parse(localStorage.getItem('cc_userProfile') || '{}');
       const nameEl = document.getElementById('ccProfileName');
       if (nameEl) {
         nameEl.textContent = profile.firstName ? profile.firstName : 'Guest';
       }
+      // Ensure default UI state
+      resetBreathing();
     });
-    let breathInterval;
-    function startBreathing() {
-      const circle = document.getElementById('breathingCircle');
-      const instruction = document.getElementById('breathingInstruction');
-      let phase = 0;
-      clearInterval(breathInterval);
 
-      breathInterval = setInterval(() => {
-        phase = (phase + 1) % 3;
-        if (phase === 0) {
- 
-          circle.classList.remove('breathing-exhale');
-          circle.classList.add('breathing-inhale');
-          instruction.textContent = 'Inhale…';
-        } else if (phase === 1) {
+    // ===== Breathing Engine (Upgraded) =====
+    let breathInterval = null;
+    let countdownInterval = null;
+    let timerInterval = null;
 
-          circle.classList.remove('breathing-inhale');
-          circle.classList.remove('breathing-exhale');
-          instruction.textContent = 'Hold…';
-        } else {
+    let isBreathing = false;
+    let isPaused = false;
 
-          circle.classList.remove('breathing-inhale');
-          circle.classList.add('breathing-exhale');
-          instruction.textContent = 'Exhale…';
-        }
-      }, 4000);
+    let phaseIndex = 0; // 0 inhale, 1 hold, 2 exhale
+    const phaseSeconds = 4;
+    let remaining = phaseSeconds;
+
+    let sessionStartMs = 0;
+    let pausedAtMs = 0;
+    let totalPausedMs = 0;
+
+    // Soft sound cue (works after user clicks Start)
+    let audioCtx = null;
+    function beep(frequency=660, durationMs=90, volume=0.03){
+      try{
+        if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = "sine";
+        o.frequency.value = frequency;
+        g.gain.value = volume;
+        o.connect(g); g.connect(audioCtx.destination);
+        o.start();
+        setTimeout(()=>{ o.stop(); }, durationMs);
+      } catch(e){
+        // ignore if blocked
+      }
     }
-    function resetBreathing() {
+
+    function setActiveUI(active){
+      const dot = document.getElementById("activeDot");
+      const text = document.getElementById("activeText");
+      if(active){
+        dot.classList.add("active");
+        text.textContent = "Active";
+      } else {
+        dot.classList.remove("active");
+        text.textContent = "Inactive";
+      }
+    }
+
+    function setProgress(percent){ // 0..100
+      const ring = document.getElementById("breathingRing");
+      ring.style.setProperty("--p", `${percent}%`);
+    }
+
+    function setButtons(){
+      const startBtn = document.getElementById("startBtn");
+      const pauseBtn = document.getElementById("pauseBtn");
+
+      if(!isBreathing){
+        startBtn.textContent = "Start";
+        startBtn.disabled = false;
+        startBtn.style.opacity = "1";
+        pauseBtn.textContent = "Pause";
+        pauseBtn.disabled = true;
+        pauseBtn.style.opacity = "0.6";
+        return;
+      }
+
+      // breathing active
+      startBtn.textContent = "Started";
+      startBtn.disabled = true;
+      startBtn.style.opacity = "0.6";
+
+      pauseBtn.disabled = false;
+      pauseBtn.style.opacity = "1";
+      pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+    }
+
+    function updateTimer(){
+      const tEl = document.getElementById("timerText");
+      const now = Date.now();
+      const elapsed = isBreathing
+        ? Math.max(0, now - sessionStartMs - totalPausedMs)
+        : 0;
+
+      const s = Math.floor(elapsed/1000);
+      const mm = String(Math.floor(s/60)).padStart(2,"0");
+      const ss = String(s%60).padStart(2,"0");
+      tEl.textContent = `${mm}:${ss}`;
+    }
+
+    function applyPhaseUI(){
+      const circle = document.getElementById("breathingCircle");
+      const instruction = document.getElementById("breathingInstruction");
+
+      circle.classList.remove("breathing-inhale","breathing-exhale");
+
+      if(phaseIndex === 0){
+        circle.classList.add("breathing-inhale");
+        circle.textContent = "Inhale";
+        instruction.textContent = "Inhale…";
+        beep(740);
+      } else if(phaseIndex === 1){
+        circle.textContent = "Hold";
+        instruction.textContent = "Hold…";
+        beep(520);
+      } else {
+        circle.classList.add("breathing-exhale");
+        circle.textContent = "Exhale";
+        instruction.textContent = "Exhale…";
+        beep(420);
+      }
+    }
+
+    function startBreathing(){
+      if(isBreathing) return;
+
+      isBreathing = true;
+      isPaused = false;
+      phaseIndex = 0;
+      remaining = phaseSeconds;
+
+      sessionStartMs = Date.now();
+      totalPausedMs = 0;
+
+      setActiveUI(true);
+      setButtons();
+
+      // start immediately with inhale (no waiting 4s)
+      applyPhaseUI();
+      remaining = phaseSeconds;
+      document.getElementById("countdownText").textContent = `${remaining}s`;
+      setProgress(0);
+
+      breathInterval = setInterval(()=>{
+        if(isPaused) return;
+
+        phaseIndex = (phaseIndex + 1) % 3;
+        applyPhaseUI();
+        remaining = phaseSeconds;
+        document.getElementById("countdownText").textContent = `${remaining}s`;
+        setProgress(0);
+      }, phaseSeconds * 1000);
+
+      countdownInterval = setInterval(()=>{
+        if(isPaused) return;
+
+        remaining = Math.max(0, remaining - 1);
+        document.getElementById("countdownText").textContent = `${remaining}s`;
+
+        const done = ((phaseSeconds - remaining) / phaseSeconds) * 100;
+        setProgress(Math.min(100, Math.max(0, done)));
+      }, 1000);
+
+      timerInterval = setInterval(()=>{
+        if(isPaused) return;
+        updateTimer();
+      }, 500);
+
+      updateTimer();
+    }
+
+    function togglePause(){
+      if(!isBreathing) return;
+
+      isPaused = !isPaused;
+
+      const instruction = document.getElementById("breathingInstruction");
+      const circle = document.getElementById("breathingCircle");
+
+      if(isPaused){
+        pausedAtMs = Date.now();
+        instruction.textContent = "Paused. Press Resume to continue.";
+        circle.classList.remove("breathing-inhale","breathing-exhale");
+        circle.textContent = "Paused";
+      } else {
+        totalPausedMs += (Date.now() - pausedAtMs);
+        applyPhaseUI();
+      }
+
+      setButtons();
+    }
+
+    function resetBreathing(){
       clearInterval(breathInterval);
-      const circle = document.getElementById('breathingCircle');
-      const instruction = document.getElementById('breathingInstruction');
-      circle.classList.remove('breathing-inhale');
-      circle.classList.remove('breathing-exhale');
-      circle.textContent = 'Start';
-      instruction.textContent = 'Press start to begin a 4‑4‑4 breathing cycle.';
+      clearInterval(countdownInterval);
+      clearInterval(timerInterval);
+
+      breathInterval = null;
+      countdownInterval = null;
+      timerInterval = null;
+
+      isBreathing = false;
+      isPaused = false;
+
+      const circle = document.getElementById("breathingCircle");
+      const instruction = document.getElementById("breathingInstruction");
+
+      circle.classList.remove("breathing-inhale","breathing-exhale");
+      circle.textContent = "Start";
+      instruction.textContent = "Press start to begin a 4-4-4 breathing cycle.";
+
+      document.getElementById("countdownText").textContent = "4s";
+      document.getElementById("timerText").textContent = "00:00";
+
+      setActiveUI(false);
+      setProgress(0);
+      setButtons();
     }
   </script>
 
+  <!-- Footer with copyright and contact -->
   <footer class="cc-footer">
-    &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact: <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
+    &copy; Chill Cabin - Kirutheeka Murugananda Pandi. Contact:
+    <a href="mailto:K2440084@kingston.ac.uk">K2440084@kingston.ac.uk</a> |
     <a href="chillcabin-about.html">About Us</a>
   </footer>
 
-<script>
-  function restartApp() {
-    const ok = confirm("Restart Chill Cabin from the beginning? Your session data will be cleared.");
-    if (ok) {
-      localStorage.clear();
-      sessionStorage.clear();
-      window.location.href = "index.html";
+  <script>
+    function restartApp() {
+      const ok = confirm("Restart Chill Cabin from the beginning? Your session data will be cleared.");
+      if (ok) {
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = "index.html";
+      }
     }
-  }
-</script>
+  </script>
 </body>
 </html>
